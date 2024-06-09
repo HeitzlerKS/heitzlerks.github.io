@@ -6,7 +6,7 @@ body {
 
 @media (min-width: 992px) {
   body {
-    padding-left: 14rem;
+    /*padding-left: 14rem;*/
   }
 }
 
@@ -17,7 +17,7 @@ body {
   width: 100%;
   min-height: 100vh;
   background-color: #999999;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -84,8 +84,8 @@ body {
 }
 
 .sidebar.collapsed #sidebarToggleHolder {
-  position: absolute !important;
-  color: #fff !important;
+  position: fixed !important;
+  color: #999 !important;
   left: 0;
   top: 0;
   padding: 10px;
@@ -94,7 +94,7 @@ body {
 
 @media (max-width: 991px) {
   .sidebar.mobile-hid #sidebarToggleHolder {
-    position: absolute !important;
+    position: fixed !important;
     color: #858791 !important;
     left: 0;
     top: 0;

@@ -1,7 +1,7 @@
 .article-clean {
   color: #56585b;
   background-color: #fff;
-  font-family: 'Lora', serif;
+  /*font-family: cinzel;*/
   font-size: 14px;
 }
 
@@ -80,5 +80,9 @@
 .article-clean .text figure img {
   margin-bottom: 12px;
   max-width: 100%;
+}
+
+* {
+  font-family: DarkSkyrimFont;
 }
 
