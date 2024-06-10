@@ -48,6 +48,7 @@
 .article-clean .text p {
   margin-bottom: 20px;
   line-height: 1.45;
+  /*font-family: DarkSkyrimFont;*/
 }
 
 @media (min-width:768px) {
@@ -84,5 +85,13 @@
 
 * {
   font-family: DarkSkyrimFont;
+}
+
+text {
+  font-family: DarkSkyrimFont;
+}
+
+p {
+  font-family: Allura;
 }
 
