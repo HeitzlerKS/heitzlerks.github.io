@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Mobile Nav Specifics (optional, wenn du JS für Toggle baust) */
+        .mobile-nav-container { 
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            border-left: 3px solid #14B8A6;
+            border-bottom: 3px solid #14B8A6;
+            border-bottom-left-radius: 2rem;
+            padding: 1rem; 
+            background-color: #161616;
+            border-top: 0.1rem solid rgba(0,0,0,0.1);
+            display: none; 
+        }
+        .mobile-nav-container.active {
+            display: block; 
+        }
+        .mobile-nav-container a { 
+            display: block;
+            font-size: 2rem; 
+            margin: 3rem 0;
+        }
+        .mobile-nav-container a:hover,
+        .mobile-nav-container a.active {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-bottom: 0.5rem solid #14B8A6;
+        }
+    </style>
+    <title>Keanu Sky Heitzler - Bildungsweg</title>
+</head>
+
+<body class="w-full h-screen overflow-x-hidden bg-black text-white">
+    <header class="fixed top-0 left-0 w-full px-[9%] py-4 bg-transparent flex justify-between items-center z-50">
+        <a href="index.html" class="text-3xl text-[#14B8A6] font-extrabold cursor-pointer transition-transform duration-500 hover:scale-110">Keanu</a>
+
+        <nav class="hidden md:flex justify-center items-center">
+            <a href="index.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]"> Startseite</a>
+            <a href="projekte.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Projekte</a>
+            <a href="bildungsweg.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6] active">Bildungsweg</a>
+            <a href="berufliche_laufbahn.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Berufliche Laufbahn</a>
+            <a href="kontakt.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Kontakt</a>
+        </nav>
+    </header>
+
+    <main class="w-full mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-6 pt-24">
+        <section class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md">
+            <h2 class="text-2xl sm:text-3xl font-semibold text-center text-gray-900 dark:text-gray-300 mb-8">Mein Bildungsweg</h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100">Bachelor of Science, Studium: Data Science</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-2">September 2023 - Heute</p>
+                    <p class="text-base text-gray-700 dark:text-gray-300">University of Applied Sciences, Karlsruhe</p>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100">Abitur (Note: 1,8), Internationales Wirtschaftsgymnasium</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-2">September 2020 - Juli 2023</p>
+                    <p class="text-base text-gray-700 dark:text-gray-300">Carl-Helbing-Schule, Emmendingen</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                        Verbrachte drei Jahre auf dem internationalen Wirtschaftsgymnasium der Carl-Helbing-Schule, wo sich das betriebs- und volkswirtschaftliche Wissen festigte und die sprachlichen Kenntnisse im Sinne geschäftlicher Kommunikation weiterentwickelten. Erfolgreicher Abschluss mit Auszeichnung.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100">Mittlere Reife (Note: 2,2), Werkrealschule</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-2">September 2014 - Juli 2020</p>
+                    <p class="text-base text-gray-700 dark:text-gray-300">Emil-Dörle-Schule, Herbolzheim</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                        Nach fünf Jahren auf der Hauptschule mit anschließendem erfolgreichen Hauptschulabschluss, schloss ich ein Jahr später die Werkrealschule mit Lob und Auszeichnung ab.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-10 py-6 text-center">
+        <small class="text-sm text-gray-400 dark:text-gray-500">&copy; 2025 Keanu Sky Heitzler</small>
+    </footer>
+</body>
+
+</html>

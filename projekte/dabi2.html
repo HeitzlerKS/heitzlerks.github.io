@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Mobile Nav Specifics (optional, wenn du JS für Toggle baust) */
+        .mobile-nav-container { 
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            border-left: 3px solid #14B8A6;
+            border-bottom: 3px solid #14B8A6;
+            border-bottom-left-radius: 2rem;
+            padding: 1rem; 
+            background-color: #161616;
+            border-top: 0.1rem solid rgba(0,0,0,0.1);
+            display: none; 
+        }
+        .mobile-nav-container.active {
+            display: block; 
+        }
+        .mobile-nav-container a { 
+            display: block;
+            font-size: 2rem; 
+            margin: 3rem 0;
+        }
+        .mobile-nav-container a:hover,
+        .mobile-nav-container a.active {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-bottom: 0.5rem solid #14B8A6;
+        }
+
+        /* Zusätzliches Styling für Code-Ausschnitte */
+        pre {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; /* Monospace-Schriftart für Code */
+            font-size: 0.875rem; /* text-sm */
+            line-height: 1.5;
+            /* Highlight.js Theme wird Farben setzen. Überschreibe, falls nötig */
+        }
+        code {
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            /* Hintergrundfarbe für inline <code>-Tags */
+            /* background-color: #2d3748; */
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+        }
+    </style>
+    <title>Keanu Sky Heitzler - Datenanalyse & BI Projekt</title>
+</head>
+
+<body class="w-full h-screen overflow-x-hidden bg-black text-white">
+    <header class="fixed top-0 left-0 w-full px-[9%] py-4 bg-transparent flex justify-between items-center z-50">
+        <a href="../index.html" class="text-3xl text-[#14B8A6] font-extrabold cursor-pointer transition-transform duration-500 hover:scale-110">Keanu</a>
+
+        <nav class="hidden md:flex justify-center items-center">
+            <a href="../index.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]"> Startseite</a>
+            <a href="../projekte.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6] active">Projekte</a>
+            <a href="../bildungsweg.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Bildungsweg</a>
+            <a href="../berufliche_laufbahn.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Berufliche Laufbahn</a>
+            <a href="../kontakt.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Kontakt</a>
+        </nav>
+    </header>
+
+    <main class="w-full mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-6 pt-24">
+        <section class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md">
+            <h1 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-gray-300 mb-8">Semesterprojekt: Datenanalyse & BI (Instacart)</h1>
+            
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Kurzbeschreibung</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                Dieses Semesterprojekt befasst sich mit der explorativen Datenanalyse und der Anwendung von Machine Learning-Modellen (speziell Autoregressive Modelle - AR) zur Vorhersage von Trinkgeldwahrscheinlichkeiten für einen Lieferdienst. Ziel war es, relevante Einflussgrößen durch umfassendes Feature Engineering zu identifizieren und die Prognosemodelle kontinuierlich zu verbessern. Das Projekt beinhaltete die Verarbeitung großer Datensätze und die Anwendung fortgeschrittener statistischer und ML-Methoden.
+            </p>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Rolle & Verantwortlichkeiten</h2>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li>**Datenanalyse & Modellierung:** Durchführung explorativer Datenanalysen, Entwicklung von Prognosemodellen und deren iterativer Verbesserung.</li>
+                <li>**Feature Engineering:** Identifikation und Erstellung neuer relevanter Merkmale aus Rohdaten, insbesondere zeitbasierte und verhaltensbasierte Features (Clustering).</li>
+                <li>**Performance-Optimierung:** Implementierung effizienter Datenverarbeitungstechniken (Chunking) für große Datensätze.</li>
+                <li>**Validierung & Interpretation:** Robuste Evaluierung der Modell-Performance mittels Time Series Split und Interpretation statistischer Ergebnisse (ACF/PACF).</li>
+                <li>**Dokumentation & Präsentation:** Kontinuierliche Dokumentation des Projektverlaufs und der Erkenntnisse.</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Verwendete Technologien</h2>
+            <div class="flex flex-wrap gap-2 mb-6">
+                <span class="inline-block bg-blue-800 text-white px-3 py-1 text-sm rounded-full">Python</span>
+                <span class="inline-block bg-yellow-600 text-white px-3 py-1 text-sm rounded-full">Pandas</span>
+                <span class="inline-block bg-gray-600 text-white px-3 py-1 text-sm rounded-full">NumPy</span>
+                <span class="inline-block bg-pink-700 text-white px-3 py-1 text-sm rounded-full">Scikit-Learn</span>
+                <span class="inline-block bg-purple-700 text-white px-3 py-1 text-sm rounded-full">Plotly</span>
+                <span class="inline-block bg-teal-700 text-white px-3 py-1 text-sm rounded-full">Statsmodels</span>
+                <span class="inline-block bg-red-700 text-white px-3 py-1 text-sm rounded-full">PowerBI</span>
+                <span class="inline-block bg-green-700 text-white px-3 py-1 text-sm rounded-full">SQL</span>
+                <span class="inline-block bg-indigo-700 text-white px-3 py-1 text-sm rounded-full">Google Colab</span>
+            </div>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Problemstellung & Zielsetzung</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                Im Rahmen dieses Projekts war die zentrale Herausforderung, das volatile Trinkgeldverhalten von Lieferdienstnutzern präzise vorherzusagen. Dies ist besonders relevant für die Optimierung von Lieferketten, die Steuerung von Personalressourcen und das Verständnis der Kundenbindung.
+                <br><br>
+                Die Hauptziele waren:
+            </p>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li>Entwicklung eines zuverlässigen Prognosemodells für die Trinkgeldwahrscheinlichkeit von Kunden bei ihrer nächsten Bestellung.</li>
+                <li>Identifikation und Analyse wichtiger Einflussfaktoren auf das Trinkgeldverhalten (z.B. Zeit, früheres Verhalten, Kaufmuster).</li>
+                <li>Verbesserung der Prognosegenauigkeit durch fortschrittliche statistische Methoden und Machine Learning.</li>
+                <li>Gewinnung tieferer Einblicke in die Verhaltensmuster der Kunden durch explorative Datenanalyse.</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Projektablauf & Methodik</h2>
+            <div class="space-y-8 mb-6">
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">1. Datenakquise & -management</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Die Arbeit begann mit der effizienten Verarbeitung großer Rohdatensätze im Parquet- und CSV-Format, um die Speichereffizienz zu gewährleisten. Dies umfasste das chunk-basierte Laden und Mergen von Bestell- und Trinkgelddaten. Der Grund, weshalb ich diesen Schritt einführte ist der, dass der RAM meiner Geräte nicht ausreicht, um auf allen Daten gleichzeitig zu arbeiten. Ich habe mich hier bewusst gegen ein Sampling entschieden, da die Stichprobe logischerweise auf oberster Ebene (hier: Kundenebene) zu erzeugen ist, was dem Prognosemodell Informationen zu einem großen Teil der Kunden vorenthalten würde. Informationen, welche für eine präzise Vorhersage essenziell sind. Ein alternativer Ansatz wäre die Arbeit mit einer SQLite-Datenbank, was jedoch noch nicht umgesetzt ist, jedoch zeitnah getestet wird.<br><br>Der folgende Code-Ausschnitt zeigt die Funktion, welche ich hierzu programmierte und auch in diesem Projekt nutzen werde, sobald die Arbeit auf den denormalisierten Daten von Nöten ist.
+                    </p>
+                    <pre><code class="language-python">def process_data_by_chunks(
+    orders_path: str,
+    orders_products_path: str,
+    output_chunk_dir: str,
+    percentage_per_chunk: float
+) -> None:
+    """
+    Processes large datasets (orders and order_products) in chunks based on user IDs
+    to manage memory efficiently. It merges order data with product data for each
+    user chunk and saves the results to Parquet files.
+
+    This approach is particularly useful for datasets that do not fit into memory,
+    allowing for scalable data processing.
+
+    Args:
+        orders_path (str): Path to the Parquet file containing order information.
+        orders_products_path (str): Path to the CSV file containing
+                                    order-product linkage information.
+        output_chunk_dir (str): Directory where the processed Parquet chunks will be stored.
+        percentage_per_chunk (float): Percentage of unique user IDs to include in each chunk.
+                                      e.g., 0.1 for 10% of users per chunk.
+
+    Returns:
+        None: The function saves processed data chunks to the specified output directory.
+    """
+    # Ensure the output directory exists; create it if it doesn't.
+    os.makedirs(output_chunk_dir, exist_ok=True)
+
+    # Load only 'user_id' from the orders dataset to identify unique users.
+    # This initial load is done for efficient chunking strategy based on users.
+    orders_df_for_ids = pd.read_parquet(orders_path, columns=['user_id'])
+    unique_user_ids = sorted(orders_df_for_ids['user_id'].unique())
+
+    # Release memory from the temporary DataFrame holding user IDs.
+    del orders_df_for_ids
+    gc.collect() # Manually trigger garbage collection to free memory immediately.
+
+    print(f"Found {len(unique_user_ids)} unique `user_ids` in total.")
+
+    # Determine chunk size based on the total number of unique users.
+    num_users = len(unique_user_ids)
+    users_per_chunk = max(1, int(num_users * percentage_per_chunk))
+    
+    # Create sets of user IDs for each processing chunk.
+    user_id_chunks_sets = []
+    for i in range(0, num_users, users_per_chunk):
+        user_id_chunks_sets.append(set(unique_user_ids[i:i + users_per_chunk]))
+
+    print(f"Defined {len(user_id_chunks_sets)} user chunks with approx. {percentage_per_chunk * 100:.1f}% of users per chunk.")
+
+    # Define chunk size for reading the (potentially larger) order_products CSV file.
+    orders_products_read_chunk_size = 500000
+
+    # Initialize Parquet file reader for the main orders dataset for efficient row group access.
+    parquet_orders_reader = pq.ParquetFile(orders_path)
+    num_orders_row_groups = parquet_orders_reader.num_row_groups
+
+    # Iterate through each defined user chunk.
+    for i, target_user_ids_set in enumerate(user_id_chunks_sets):
+        current_chunk_number = i + 1
+        print(f"\n--- Computing user chunk {current_chunk_number}/{len(user_id_chunks_sets)} ---")
+
+        # Process orders data: filter orders relevant to the current user chunk.
+        chunk_orders_data = []
+        for rg_idx in range(num_orders_row_groups):
+            # Read orders data row group by row group to minimize memory footprint.
+            rg_table = parquet_orders_reader.read_row_group(rg_idx, columns=["user_id", "order_id", "order_date"])
+            rg_df = rg_table.to_pandas()
+
+            # Filter orders belonging to the current user chunk.
+            filtered_orders_chunk = rg_df[rg_df.user_id.isin(target_user_ids_set)]
+            if not filtered_orders_chunk.empty:
+                chunk_orders_data.append(filtered_orders_chunk)
+
+            # Explicitly delete DataFrames and tables that are no longer needed.
+            del rg_df, rg_table
+            gc.collect()
+
+        # If no orders data was found for the current user chunk, skip to the next.
+        if not chunk_orders_data:
+            print(f"Could not find `orders` data for user chunk {current_chunk_number}. Skipping.")
+            continue
+
+        # Concatenate all filtered order data for the current chunk.
+        current_orders_df = pd.concat(chunk_orders_data, ignore_index=True)
+
+        # Release memory from the list of smaller order DataFrames.
+        del chunk_orders_data
+        gc.collect()
+
+        print(f"\t- No. loaded `orders` for this chunk: {len(current_orders_df)} rows.")
+
+        # Identify unique order IDs within the current chunk to filter products efficiently.
+        target_order_ids_for_chunk = set(current_orders_df.order_id.unique())
+
+        # Process order_products data: filter products relevant to the current order IDs.
+        chunk_orders_products_data = []
+        # Read order_products CSV in smaller chunks to avoid memory issues.
+        for op_chunk_pd in pd.read_csv(orders_products_path, chunksize=orders_products_read_chunk_size):
+            # Filter products belonging to the current order IDs.
+            filtered_op_chunk = op_chunk_pd[op_chunk_pd.order_id.isin(target_order_ids_for_chunk)]
+
+            if not filtered_op_chunk.empty:
+                chunk_orders_products_data.append(filtered_op_chunk)
+
+            # Release memory from the temporary order_products chunk.
+            del op_chunk_pd
+            gc.collect()
+
+        final_merged_chunk_df = None
+
+        # Merge orders data with order_products data if product data was found.
+        if chunk_orders_products_data:
+            current_orders_products_df = pd.concat(chunk_orders_products_data, ignore_index=True)
+
+            # Release memory from the list of smaller order_products DataFrames.
+            del chunk_orders_products_data
+            gc.collect()
+
+            print(f"  - No. loaded `orders_products` for this chunk: {len(current_orders_products_df)} rows.")
+            print(f"  - Merging `orders` ({len(current_orders_df)} rows) with `orders_products` ({len(current_orders_products_df)} rows)...")
+            
+            # Perform the inner merge based on 'order_id'.
+            final_merged_chunk_df = current_orders_df.merge(current_orders_products_df, on="order_id")
+
+            # Release memory from the temporary order_products DataFrame.
+            del current_orders_products_df
+            gc.collect()
+        else:
+            # If no product data is found for the chunk's orders, proceed with only orders data.
+            print(f"  - No `orders_products` data for user chunk {current_chunk_number} has been found. Proceeding with `orders` data.")
+            final_merged_chunk_df = current_orders_df
+
+        # Define output file path and save the processed chunk to a Parquet file.
+        output_filepath = os.path.join(output_chunk_dir, f"{current_chunk_number}_orders_products_user_chunk.parquet")
+        final_merged_chunk_df.to_parquet(output_filepath, index=False)
+        print(f"  - Chunk {current_chunk_number} stored in {output_filepath}")
+
+        # Release memory from the final merged DataFrame and the current orders DataFrame.
+        del final_merged_chunk_df
+        del current_orders_df
+        gc.collect()
+
+        print(f"  - Memory for chunk {current_chunk_number} released.")
+
+    print("\nDone! All user chunks have been computed and stored.")</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">2. Analyse der univariaten Trinkgeld-Zeitreihe & Modellinitialisierung</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Um ein initiales Verständnis des Trinkgeldverhaltens zu gewinnen und erste Prognosemodelle zu entwickeln, wurde die Trinkgeldgabe der Nutzer als univariate Zeitreihe betrachtet. Hierbei lag der Fokus auf der Analyse autoregressiver Muster und der Identifikation von Zeitreihenkomponenten.
+                    </p>
+
+                    <h4 class="font-semibold text-lg text-gray-900 dark:text-gray-200 mb-2">2.1 Untersuchung autoregressiver Abhängigkeiten</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Es wurde untersucht, inwieweit das Trinkgeldverhalten eines Nutzers bei einer Bestellung durch dessen vorhergehende(s) Verhalten beeinflusst wird. Hierzu wurden autoregressive Modelle (AR-Modelle) verschiedener Ordnungen (AR(1) und AR(2)) implementiert und deren Vorhersagegenauigkeit evaluiert. Es sollte angemerkt sein, dass es sich bei diesem Modell nicht ein typisches Auto<b>regressives</b> Modell handelt. Da es sich aufgrund der Daten um ein binäres Klassifikationsproblem handelt (<i>"Hat ein Kunde bei einer Bestellung Trinkgeld gegeben oder nicht?"</i>), werden in diesem Projekt Instanzen der <code>LogisticRegressionCV</code> der Library <code>scikit-learn</code> genutzt. Die Implementierung erfolgt so, dass das Modell auch mit den Zeitreihendaten umgehen kann. Das Modelltraining sollte laut Anforderungen, zur späteren Vergleichbarkeit, zunächst lediglich anhand von zeitlich verzögerten Features (im Folgenden als "Shifted-Features" bezeichnet) erfolgen. Um die zeitliche Komponente nicht zu ignorieren, nutze ich hier den <code>TimeSeriesSplit</code>, welcher u. a. dafür sorgt, dass die Modell-Trainingsdaten zeitlich vor den Testdaten liegen und wie bei einer Kreuzvalidierung eine Anzahl von <code>n_splits</code> Modellen trainiert.
+                    </p>
+                    <pre><code class="language-python">def train_ar(X: pd.DataFrame, lags: int) -> float:
+    """
+    Trains and evaluates an Autoregressive (AR) model to predict users' tip probability
+    based on historical tipping behavior.
+
+    This function prepares the input data by creating lagged tip features,
+    encodes user IDs, and performs time-series cross-validation to
+    robustly evaluate model performance.
+
+    Args:
+        X (pd.DataFrame): Input DataFrame containing 'order_date', 'user_id', and 'tip' data.
+                          'tip' is expected to be a binary (0 or 1) target variable.
+        lags (int): The number of historical orders (lags) to include as features
+                    in the autoregressive model (e.g., 1 for AR(1), 2 for AR(2)).
+
+    Returns:
+        float: The mean F1-score across all cross-validation folds,
+               indicating the model's performance in predicting tip probability.
+    """
+    # Create a copy of the DataFrame and select only the necessary columns
+    # to avoid modifying the original DataFrame and reduce memory footprint.
+    X_processed = X.copy()[["order_date", "user_id", "tip"]]
+
+    # Sort data by user and then by order date to ensure correct lagging.
+    X_processed.sort_values(["order_date", "user_id"], inplace=True)
+    # Set 'order_date' as the index for time-series operations,
+    # though TimeSeriesSplit primarily relies on positional indexing.
+    X_processed.set_index("order_date", inplace=True)
+
+    # Generate shifted tip features. For each lag, create a new column
+    # showing the tip status from a previous order for the same user.
+    for lag in range(1, lags + 1):
+        X_processed[f"tip_t-{lag}"] = X_processed.groupby("user_id").tip.shift(lag)
+
+    # Drop rows that contain NaN values introduced by the shifting operation.
+    X_processed.dropna(inplace=True)
+
+    # Separate the target variable 'tip' from the features.
+    y = X_processed.pop("tip")
+
+    # Define the preprocessing steps for the features.
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ("user_encoder", OneHotEncoder(handle_unknown="ignore"), ["user_id"])
+        ],
+        remainder="passthrough"
+    )
+
+    # Initialize TimeSeriesSplit for robust cross-validation on time-series data.
+    # This ensures that validation data always comes *after* training data chronologically,
+    # preventing data leakage from the future.
+    tscv = TimeSeriesSplit(n_splits=5)
+    fold_scores = [] # List to store F1-score for each fold.
+
+    # Iterate through each fold generated by TimeSeriesSplit.
+    for i, (train_idx, test_idx) in enumerate(tscv.split(X_processed)):
+        print(f"------------ Fold {i + 1} ------------")
+        print(f"Range of train indices: {len(train_idx)}, Start: {train_idx[0]}, Stop: {train_idx[-1]}")
+        print(f"Range of test indices: {len(test_idx)}, Start: {test_idx[0]}, Stop: {test_idx[-1]}")
+
+        # Split data into training and test sets based on TimeSeriesSplit indices.
+        X_train, X_test = X_processed.iloc[train_idx], X_processed.iloc[test_idx]
+        y_train, y_test = y.iloc[train_idx], y.iloc[test_idx]
+
+        # Fit the preprocessor on the training data and transform both train/test sets.
+        preprocessor.fit(X_train)
+        X_train_transformed = preprocessor.transform(X_train)
+        X_test_transformed = preprocessor.transform(X_test)
+
+        # Initialize and train the Logistic Regression model with built-in cross-validation.
+        # 'cv=5' for internal CV, 'scoring="f1"' to optimize for F1-score,
+        # 'n_jobs=-1' to use all available CPU cores, 'max_iter=1000' for convergence.
+        model = LogisticRegressionCV(cv=5, scoring="f1", n_jobs=-1, max_iter=1000)
+        model.fit(X_train_transformed, y_train)
+
+        # Make predictions on the transformed test set.
+        y_pred = model.predict(X_test_transformed)
+
+        # Calculate F1-score for the current fold and append to the list.
+        f1 = f1_score(y_test, y_pred)
+        fold_scores.append(f1)
+        print(f"F1 Score for fold {i + 1}: {f1:.4f}\n")
+
+    # Return the average F1-score across all cross-validation folds.
+    return np.mean(fold_scores)</code></pre>
+                    <div class="mb-4">
+                        <img src="assets/placeholder_screenshot_ar_performance.png" alt="Screenshot: F1-Scores von AR(1) und AR(2) Modellen" class="h-auto rounded-lg shadow-md mb-2">
+                        <small class="text-sm text-gray-500 dark:text-gray-400">Vergleich der F1-Scores für AR(1) und AR(2) Modelle.</small>
+                    </div>
+                    <h4 class="font-semibold text-lg text-gray-900 dark:text-gray-200 mb-2">2.2 Analyse von Autokorrelationen zur Modelloptimierung</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Um den optimalen Grad der autoregressiven Abhängigkeit zu bestimmen und somit die bestmögliche Ordnung für ein AR(n)-Modell zu schätzen, wurden die Autokorrelationsfunktion (ACF) und die partielle Autokorrelationsfunktion (PACF) der Zeitreihe analysiert. Dies ermöglichte eine datengestützte Entscheidung über die Anzahl der einzubeziehenden vorhergehenden Bestellungen.<br>Der folgende Code-Ausschnitt zeigt die von mir programmierten Funktionen zur Berechnung von ACF und PACF.<br><b>Warum nicht einfach</b><code>statsmodels</code><b> verwenden?</b> Es ist so, dass die Trinkgeldgabe jedes einzelnen Kunden als eine eigene univariate Zeitreihe zu betrachten ist. Ergo hat jeder Kunde sein eigenes (quasi-)einzigartiges Trinkgeldgabe-Verhalten. Da die Methoden von <code>statsmodels</code> von stationären Daten für ein Regressionsproblem ausgehen, haben wir drei Gründe, <code>statsmodels</code> hier nicht zu verwenden, wovon einer vorerst lediglich eine Annahme ist, jedoch später geprüft wird:<br><ol class="list-decimal pl-5 mb-4 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed"><li>Wie bereits festgestellt, handelt es sich im Anwendungsfall dieses Projekts um ein Klassifikationsproblem; kein Regressionsproblem</li><li>Wenn für jeden Kunden eine Zeitreihe vorliegt, müssten die Methoden für jeden Kunden einzeln ausgeführt und deren Resultate aggregiert werden, um ein globales Resultat zu erhalten, was nicht im Sinne der (P)ACF-Analyse wäre. Zudem ist nicht davon auszugehen, dass für alle Verzögerungen für jeden Kunden eine Bestellung vorliegt, was dazu führen würde, dass die Analyse entweder so oder so ein total verfälschtes Resultat erbringen würde oder, was wahrscheinlicher wäre, ab einer gewissen Verzögerung nur <code>NaN</code>-Werte (<u>N</u>ot <u>a</u> <u>N</u>umber) enthalten würde.</li><li>Weder die einzelnen Kunden-Zeitreihen noch die globale Zeitreihe können als stationär vorausgesetzt werden, da bei Verhaltensweisen, wie die Trinkgeldgabe, stets mit einer Tendenz zu rechnen ist, die Zielgröße zu bestimmten, regelmäßigen Zeitpunkten oder -räumen relativ zu steigern oder zu mindern, sowie ein allgemeiner Anstieg oder Abschwung der Zielgröße über den gesamten betrachteten Zeitraum hinweg (Trend und Periodizität müssen noch nachgewiesen werden laut Projektauftrag erst nachher behandelt).</li></ol>
+                    </p>
+                    <pre><code class="language-python">import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression # Assuming this import is present in the original script
+
+def compute_acf_improved(df: pd.DataFrame, lags: int) -> pd.Series:
+    """
+    Computes the Autocorrelation Function (ACF) for the 'tip' time series.
+    
+    This function calculates the correlation between the current 'tip' value
+    and its lagged versions across all users. It's designed to be memory-efficient
+    by processing data in a way that handles shifting and NaN values.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing at least 'tip', 'user_id', and 'order_date' columns.
+                           'order_date' is implicitly used for sorting if needed, but 'tip' and 'user_id' are directly used.
+        lags (int): The maximum number of lags for which to compute the autocorrelation.
+                    Represents the historical orders to consider.
+
+    Returns:
+        pd.Series: A Series where the index represents the lag (e.g., 1, 2, ..., lags)
+                   and the values are the corresponding autocorrelation coefficients.
+    """
+    df_copy = df.copy() # Create a copy to avoid modifying the original DataFrame.
+
+    # Generate all required lagged 'tip' features for each user.
+    # This prepares the DataFrame for correlation calculation across different lags.
+    for lag_val in range(1, lags + 1):
+        df_copy[f"tip_t-{lag_val}"] = df_copy.groupby("user_id").tip.shift(lag_val)
+
+    # Drop rows containing NaN values that were introduced by the shifting operation.
+    # These NaNs occur for early orders of users where no previous tip data exists for the given lag.
+    df_copy.dropna(inplace=True)
+
+    # Select only the original 'tip' column and all generated lagged features for correlation.
+    cols_to_correlate = ["tip"] + [f"tip_t-{lag_val}" for lag_val in range(1, lags + 1)]
+    
+    # Ensure only the intersection of available columns and required columns is used.
+    # This handles cases where some lagged columns might not have been created (e.g., if lags > data history).
+    final_df = df_copy[df_copy.columns.intersection(cols_to_correlate)]
+
+    # Compute the correlation matrix and extract the correlations with the 'tip' column.
+    # This effectively gives the ACF values for all specified lags.
+    acf_results = final_df.corr()["tip"]
+
+    # Remove the self-correlation (lag 0, where 'tip' correlates with itself)
+    # and rename the index to reflect the lag numbers directly for clarity.
+    return acf_results.drop("tip").rename(index=lambda x: int(x.split('-')[1]))
+
+
+def compute_pacf_improved(df: pd.DataFrame, lags: int) -> dict:
+    """
+    Computes the Partial Autocorrelation Function (PACF) for the 'tip' time series.
+    
+    The PACF measures the direct correlation between an observation and a lagged
+    observation, after removing the linear dependence of intermediate lags.
+    It's computed for each user's 'tip' series.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing at least 'tip', 'user_id', and 'order_date' columns.
+                           'order_date' is crucial for correct time-based sorting before shifting.
+        lags (int): The maximum number of lags for which to compute the PACF.
+
+    Returns:
+        dict: A dictionary where keys are the lag numbers (int) and values are the
+              corresponding PACF coefficients (float). NaN is used if computation
+              is not possible for a given lag.
+    """
+    df_copy = df.copy() # Create a copy to prevent modifying the original DataFrame.
+    # Ensure data is sorted by user and then by order date, essential for correct shifting.
+    df_copy.sort_values(["user_id", "order_date"], inplace=True)
+
+    # Generate all required lagged 'tip' features upfront for all lags.
+    for l in range(1, lags + 1):
+        df_copy[f"tip_t-{l}"] = df_copy.groupby("user_id").tip.shift(l)
+
+    # Drop rows containing NaN values introduced by shifting.
+    # These rows lack sufficient history for the maximum requested lag.
+    df_copy.dropna(inplace=True)
+
+    pacf_vals = {} # Dictionary to store PACF values for each lag.
+
+    # Compute PACF for each lag iteratively.
+    for lag in range(1, lags + 1):
+        if lag == 1:
+            # PACF(1) is defined as ACF(1).
+            corr_val = df_copy["tip"].corr(df_copy['tip_t-1'])
+            if not np.isnan(corr_val):
+                pacf_vals[lag] = corr_val
+        else:
+            # For PACF(k), we regress Y_t on Y_{t-1}, ..., Y_{t-k+1}
+            # and Y_{t-k} on Y_{t-1}, ..., Y_{t-k+1}.
+            # The PACF(k) is then the correlation of the residuals from these two regressions.
+
+            # Define columns for intermediate lags used in the regression.
+            X_prime_cols = [f"tip_t-{l}" for l in range(1, lag)]
+
+            # Define all columns required for the current lag's computation.
+            required_cols = ["tip", f"tip_t-{lag}"] + X_prime_cols
+
+            # Select only the necessary columns for the current lag's calculation.
+            subset_for_lag = df_copy[df_copy.columns.intersection(required_cols)]
+
+            # Check if the subset has enough data points for correlation.
+            if subset_for_lag.empty or len(subset_for_lag) < 2:
+                pacf_vals[lag] = np.nan # Cannot compute if data is insufficient.
+                continue
+
+            # Regression of Y_t ('tip') on intermediate lags.
+            model_y = LinearRegression()
+            model_y.fit(subset_for_lag[X_prime_cols], subset_for_lag["tip"])
+            residuals_y = subset_for_lag["tip"] - model_y.predict(subset_for_lag[X_prime_cols])
+
+            # Regression of Y_{t-k} ('tip_t-lag') on intermediate lags.
+            model_xk = LinearRegression()
+            model_xk.fit(subset_for_lag[X_prime_cols], subset_for_lag[f"tip_t-{lag}"])
+            residuals_xk = subset_for_lag[f"tip_t-{lag}"] - model_xk.predict(subset_for_lag[X_prime_cols])
+
+            # Compute the correlation of the residuals.
+            # np.corrcoef handles NaN values; it returns NaN if all values are NaN.
+            correlation = np.corrcoef(residuals_y, residuals_xk)[0, 1]
+            if not np.isnan(correlation):
+                pacf_vals[lag] = correlation
+            else:
+                pacf_vals[lag] = np.nan # If correlation itself results in NaN.
+
+    return pacf_vals</code></pre>
+                    <div class="mb-4">
+                        <img src="../assets/placeholder_screenshot_acf_pacf_plots.png" alt="Screenshot: ACF- und PACF-Plots" class="w-full h-auto rounded-lg shadow-md mb-2">
+                        <small class="text-sm text-gray-500 dark:text-gray-400">Visualisierung der Autokorrelationen zur Identifikation von Zeitreihenmustern.</small>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Basierend auf diesen Analysen wurde der optimale Wert für <code>n</code> im AR(n)-Modell abgeleitet und dessen Prognosegenauigkeit evaluiert.
+                    </p>
+                    <div class="mb-4">
+                        <img src="../assets/placeholder_screenshot_optimal_ar_performance.png" alt="Screenshot: F1-Score des optimalen AR(n) Modells" class="w-full h-auto rounded-lg shadow-md mb-2">
+                        <small class="text-sm text-gray-500 dark:text-gray-400">Performance des optimalen AR(n)-Modells (z.B. AR(4)).</small>
+                    </div>
+
+                    <h4 class="font-semibold text-lg text-gray-900 dark:text-gray-200 mb-2">2.3 Untersuchung von Periodizität und Trend</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Um ein vollständiges Bild der Zeitreihe zu erhalten, wurde die Trinkgeld-Zeitreihe auf das Vorhandensein von Periodizitäten und Trends untersucht. Diese Analyse ist entscheidend für eine ganzheitliche Modellierung des Verhaltens und die Integration geeigneter zeitlicher Merkmale.
+                    </p>
+                    <div class="mb-4">
+                        <img src="../assets/placeholder_screenshot_weekly_tip_rate.png" alt="Screenshot: Trinkgeldrate pro Wochentag" class="w-full h-auto rounded-lg shadow-md mb-2">
+                        <small class="text-sm text-gray-500 dark:text-gray-400">Durchschnittliche Trinkgeldrate pro Wochentag.</small>
+                    </div>
+                    <div class="mb-4">
+                        <img src="../assets/placeholder_screenshot_time_series_decomposition.png" alt="Screenshot: Zeitreihenzerlegung" class="w-full h-auto rounded-lg shadow-md mb-2">
+                        <small class="text-sm text-gray-500 dark:text-gray-400">Zerlegung der Zeitreihe in Trend, Saisonalität und Residuen (additiv/multiplikativ).</small>
+                    </div>
+                    <pre><code class="language-python">
+# Beispielcode für Chi-Quadrat Test und saisonale Zerlegung
+# from scipy.stats import chi2_contingency
+# from statsmodels.tsa.seasonal import seasonal_decompose
+
+# contingency_table = pd.crosstab(otc.day_name, otc.tip)
+# chi2, p, _, _ = chi2_contingency(contingency_table)
+
+# plot_additive = seasonal_decompose(df.tip, model="additive", period=7)
+# plot_additive.plot()
+                    </code></pre>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Die gewonnenen Erkenntnisse über Periodizitäten und Trends wurden anschließend in die Weiterentwicklung des Prognosemodells einbezogen (siehe folgenden Abschnitt "3. Feature Engineering & Modellverfeinerung").
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">3. Feature Engineering & Modellverfeinerung</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Nach der initialen Zeitreihenanalyse erfolgte eine umfassendere Phase des Feature Engineerings, um die Prognosemodelle weiter zu optimieren. Dies umfasste die Integration von zeitbasierten und verhaltensbasierten Merkmalen, die über die reine autoregressive Abhängigkeit hinausgehen.
+                    </p>
+                    <ul class="list-disc pl-5 mb-4 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                        <li>**Erweiterte Zeitbasierte Features:** Vertiefung der Nutzung von `days_since_start`, `weekday` und `hour` zur Erfassung umfassenderer zeitlicher Muster.</li>
+                        <li>**Verhaltensbasiertes Clustering:** Identifikation und Integration von Benutzer-Clustern basierend auf dem Kaufverhalten nach Abteilungen und der Trinkgeldrate. Hierzu wurden <code>StandardScaler</code> und <code>KMeans</code> eingesetzt, um unterschiedliche Kundensegmente zu identifizieren und deren spezifisches Trinkgeldverhalten zu modellieren.</li>
+                        <li>**Integration in die Preprocessing Pipeline:** Alle neu entwickelten Features, einschließlich der Sin/Cos-Transformationen für Periodizität und der NaN-Indikatoren für verzögerte Merkmale, wurden in eine robuste <code>ColumnTransformer</code>-Pipeline integriert. Diese Pipeline stellte sicher, dass die Daten konsistent vorverarbeitet und skaliert wurden, bevor sie dem Modell zugeführt wurden.</li>
+                    </ul>
+                    <div class="mb-4">
+                        <img src="../assets/placeholder_screenshot_clustering.png" alt="Screenshot: Cluster-Ergebnisse" class="w-full h-auto rounded-lg shadow-md mb-2">
+                        <small class="text-sm text-gray-500 dark:text-gray-400">Ergebnisse des Nutzer-Clusterings und deren durchschnittliche Trinkgeldraten.</small>
+                    </div>
+                    <pre><code class="language-python">
+# Beispielcode für Feature Preprocessing (gekürzt)
+def feature_preprocessing(df: pd.DataFrame, tip_data: pd.DataFrame, lags: int, min_date_global: pd.Timestamp = None) -> Tuple[pd.DataFrame, ColumnTransformer]:
+    # ... code for generating temporal features, shifted features, and clusters ...
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features),
+            ('num_shifted_tips', StandardScaler(), numerical_features_to_scale),
+            ("weekly", SinCosTransformer(period=7), ["weekday"]),
+            ("hourly", SinCosTransformer(period=24), ["hour"]),
+            ('nan_indicators', 'passthrough', numerical_features_passthrough)
+        ],
+        remainder='drop'
+    )
+    return df_copy, preprocessor
+                    </code></pre>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">4. Endgültige Modellierung & Validierung</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Das erweiterte Prognosemodell wurde unter Berücksichtigung aller neuen Features erneut trainiert und validiert. Die robuste Validierungsstrategie mittels <code>TimeSeriesSplit</code> wurde beibehalten, um die Generalisierbarkeit des Modells auf zukünftige Daten zu gewährleisten. Die finale Modell-Performance wurde erneut anhand des F1-Scores bewertet.
+                    </p>
+                    <pre><code class="language-python">
+# Beispielcode für finales Modelltraining (gekürzt)
+# def train_ar_extended_new(...)
+# (Der vollständige Code der train_ar_extended_new Funktion, falls sie das finale Training übernimmt)
+# final_model, final_preprocessor, min_date, f1_mean = train_ar_extended_new(orders, tips, lags=3)
+                    </code></pre>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Abschließend wurden mit dem trainierten Modell Vorhersagen für den Testdatensatz generiert und in das geforderte Format überführt.
+                    </p>
+                    <pre><code class="language-python">
+# Beispielcode für Vorhersagegenerierung (gekürzt)
+# def make_predictions(...)
+# (Der vollständige Code der make_predictions Funktion)
+# pred_df = make_predictions(tip_temp_test, final_model, final_preprocessor, 3, min_date)
+# pred_df.to_csv("task_2g_pred.csv")
+                    </code></pre>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Ergebnisse & Erkenntnisse</h2>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li>Das finale, erweiterte AR(4)-Modell zeigte eine verbesserte Vorhersageleistung, was die Effektivität der integrierten zeitbasierten und verhaltensbasierten Features unterstreicht.</li>
+                <li>Die anfängliche Analyse der Autokorrelationen lieferte unerwartete Einblicke in die Datenstruktur, die über reine AR-Modelle hinausgehen und auf trendlastige Komponenten hindeuten.</li>
+                <li>Die statistisch bestätigte wöchentliche Periodizität und die visualisierten Zeitreihen-Trends sind entscheidend für ein tiefes Verständnis des Trinkgeldverhaltens.</li>
+                <li>Die identifizierten Nutzer-Cluster bieten wertvolle Einblicke in unterschiedliche Trinkgeldpräferenzen und Kaufgewohnheiten der Kunden, was Potenzial für personalisierte Marketingstrategien aufzeigt.</li>
+                <li>Die Implementierung speichereffizienter Datenverarbeitung (Chunking) erwies sich als essenziell für den Umgang mit großen, realen Datensätzen.</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Zukunftsaussichten</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                Für zukünftige Iterationen des Projekts könnten weitere Feature-Kategorien (z.B. RFM-Analyse), die Anwendung komplexerer Machine-Learning-Modelle (Gradient Boosting, Random Forests) und eine detailliertere Untersuchung der Cluster-spezifischen Verhaltensmuster die Prognosegenauigkeit weiter steigern. Die Integration weiterer externer Datenquellen (z.B. Wetterdaten, lokale Ereignisse) könnte ebenfalls neue Einblicke liefern.
+            </p>
+        </section>
+
+        <footer class="mt-10 py-6 text-center">
+            <small class="text-sm text-gray-400 dark:text-gray-500">&copy; 2025 Keanu Sky Heitzler</small>
+        </footer>
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>
