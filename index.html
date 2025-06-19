@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <style>
         /* Setzt Poppins als globale Schriftart */
@@ -118,17 +119,10 @@
 </head>
 
 <body class="w-full h-screen overflow-x-hidden bg-black text-white">
-    <header class="fixed top-0 left-0 w-full px-[9%] py-4 bg-transparent flex justify-between items-center z-50">
-        <a href="index.html" class="text-3xl text-[#14B8A6] font-extrabold cursor-pointer transition-transform duration-500 hover:scale-110">Keanu</a>
-
-        <nav class="hidden md:flex justify-center items-center">
-            <a href="index.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6] active"> Startseite</a>
-            <a href="projekte.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Projekte</a>
-            <a href="bildungsweg.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Bildungsweg</a>
-            <a href="berufliche_laufbahn.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Berufliche Laufbahn</a>
-            <a href="kontakt.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Kontakt</a>
-        </nav>
-    </header>
+    <div id="rec-header"></div>
+    <script>
+        $("#rec-header").load("recyclables/header.html");
+    </script>
 
     <main class="w-full mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-6">
         <section class="home min-h-screen px-[9%] py-20 flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32 bg-black">
@@ -147,6 +141,9 @@
 
         <section id="projekte" class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md mt-12">
             <h2 class="text-2xl sm:text-3xl font-semibold text-center text-gray-900 dark:text-gray-300 mb-8">Meine Projekte</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-4 text-base text-center">
+                Hier finden Sie eine kurze Übersicht einiger meiner bisher interessantesten Projekte.<br>Falls Sie Interesse haben, klicken Sie gerne auf <i>Mehr erfahren</i>, um die vollständige Dokumentation des jeweiligen Projekts einzusehen.
+            </p>
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 <div class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-6 rounded-xl shadow-md">
                     <h3 class="font-semibold text-xl mb-2">Semesterprojekt, Datenanalyse & BI</h3>
@@ -154,6 +151,7 @@
                         Durchführung explorativer Datenanalysen und Anwendung von Machine Learning-Modellen (AR-Modelle) zur Vorhersage von Trinkgeldwahrscheinlichkeiten eines Lieferdienstes. Identifikation weiterer Einflussgrößen durch Feature Engineering und Verbesserung der Prognosemodelle.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="inline-block bg-black text-white px-3 py-1 text-sm rounded-full">WIP</span>
                         <span class="inline-block bg-blue-800 text-white px-3 py-1 text-sm rounded-full">Python</span>
                         <span class="inline-block bg-yellow-600 text-white px-3 py-1 text-sm rounded-full">Pandas</span>
                         <span class="inline-block bg-gray-600 text-white px-3 py-1 text-sm rounded-full">NumPy</span>
