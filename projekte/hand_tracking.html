@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Mobile Nav Specifics (optional, wenn du JS für Toggle baust) */
+        .mobile-nav-container { 
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            border-left: 3px solid #14B8A6;
+            border-bottom: 3px solid #14B8A6;
+            border-bottom-left-radius: 2rem;
+            padding: 1rem; 
+            background-color: #161616;
+            border-top: 0.1rem solid rgba(0,0,0,0.1);
+            display: none; 
+        }
+        .mobile-nav-container.active {
+            display: block; 
+        }
+        .mobile-nav-container a { 
+            display: block;
+            font-size: 2rem; 
+            margin: 3rem 0;
+        }
+        .mobile-nav-container a:hover,
+        .mobile-nav-container a.active {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-bottom: 0.5rem solid #14B8A6;
+        }
+
+        /* Zusätzliches Styling für Code-Ausschnitte */
+        pre {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; /* Monospace-Schriftart für Code */
+            font-size: 0.875rem; /* text-sm */
+            line-height: 1.5;
+        }
+        code {
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+        }
+    </style>
+    <title>Keanu Sky Heitzler - Hand-Tracking Projekt</title>
+</head>
+
+<body class="w-full h-screen overflow-x-hidden bg-black text-white">
+    <header class="fixed top-0 left-0 w-full px-[9%] py-4 bg-transparent flex justify-between items-center z-50">
+        <a href="../index.html" class="text-3xl text-[#14B8A6] font-extrabold cursor-pointer transition-transform duration-500 hover:scale-110">Keanu</a>
+
+        <nav class="hidden md:flex justify-center items-center">
+            <a href="../index.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]"> Startseite</a>
+            <a href="../projekte.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6] active">Projekte</a>
+            <a href="../bildungsweg.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Bildungsweg</a>
+            <a href="../berufliche_laufbahn.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Berufliche Laufbahn</a>
+            <a href="../kontakt.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Kontakt</a>
+        </nav>
+    </header>
+
+    <main class="w-full mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-6 pt-24">
+        <section class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md">
+            <h1 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-gray-300 mb-8">Privatprojekt: Hand-Tracking & Gestensteuerung</h1>
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Kurzinfos</h2>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Offizieller Status: </b><b class="text-green-700 dark:text-green-400 mb-6 leading-relaxed">Fertig</b></li>
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Bearbeitungszeitraum: <time datetime="2022-08-20">20. August 2022</time> - <time datetime="2022-12-10">10. Dezember 2022</time></b></li>
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Fortsetzungsprojekt geplant oder nötig: </b></b><b class="text-green-700 dark:text-green-400 mb-6 leading-relaxed">Ja</b></li>
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Code wird nach Projektende gewartet: </b></b><b class="text-green-700 dark:text-green-400 mb-6 leading-relaxed">Ja</b></li>
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Privates Projekt: </b><b class="text-green-700 dark:text-green-400 mb-6 leading-relaxed">Ja</b></li>
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Zuletzt gewartet: <time datetime="2025-06-19">19. Juni 2025</time></b></li>
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Letztes Update: <time datetime="2025-06-19">19. Juni 2025</time></b></li>
+            </ul>
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Kurzbeschreibung</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                Dieses private Projekt ist eine Software zur Erkennung und Markierung menschlicher Hände mittels einer Webcam. Sie ermöglicht die berührungslose Steuerung des Mauscursors sowie die Ausführung grundlegender Klick- und Scrollfunktionen direkt via Handgesten. Es dient als explorative Studie zur Untersuchung intuitiver Mensch-Computer-Interaktionen.
+            </p>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Rolle & Verantwortlichkeiten</h2>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li><b>Konzeption & Design:</b> Eigenständige Ideenentwicklung für die Anwendung von Hand-Tracking zur Computersteuerung.</li>
+                <li><b>Entwicklung & Implementierung:</b> Vollständige Programmierung der Hand-Tracking-Logik und der Gesten-Mapping-Algorithmen.</li>
+                <li><b>Modellintegration:</b> Einbindung und Anpassung vorgefertigter Computer-Vision-Modelle (MediaPipe) für spezifische Anwendungsfälle.</li>
+                <li><b>Fehlerbehebung & Optimierung:</b> Iterative Verbesserung der Erkennungsgenauigkeit, der Steuerungsreaktion und der Benutzerfreundlichkeit.</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Verwendete Technologien</h2>
+            <div class="flex flex-wrap gap-2 mb-6">
+                <span class="inline-block bg-blue-800 text-white px-3 py-1 text-sm rounded-full">Python</span>
+                <span class="inline-block bg-sky-800 text-white px-3 py-1 text-sm rounded-full">OpenCV</span>
+                <span class="inline-block bg-orange-800 text-white px-3 py-1 text-sm rounded-full">MediaPipe</span>
+                <span class="inline-block bg-gray-600 text-white px-3 py-1 text-sm rounded-full">NumPy</span>
+                <span class="inline-block bg-purple-600 text-white px-3 py-1 text-sm rounded-full">Autopy</span>
+                <span class="inline-block bg-green-800 text-white px-3 py-1 text-sm rounded-full">Pynput</span>
+            </div>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Problemstellung & Zielsetzung</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                In einer zunehmend digitalen Welt suchen wir ständig nach intuitiveren und natürlicheren Wegen der Interaktion mit Technologie. Traditionelle Eingabegeräte wie Maus und Tastatur sind zwar etabliert, stoßen jedoch an ihre Grenzen, wenn es um räumliche Interaktionen, immersive Erlebnisse oder die Bedienung in bestimmten Umgebungen geht, in denen physische Eingabegeräte unpraktisch oder unhygienisch sind.
+                <br><br>
+                Aus reiner Neugier an den Möglichkeiten der modernen Computer-Vision-Bibliotheken und dem Wunsch, die Grenzen menschlicher-Computer-Interaktion zu erkunden, stellte sich die Frage: Inwiefern lassen sich alltägliche Gesten für eine berührungslose Steuerung digitaler Oberflächen nutzen? Dieses Projekt diente als explorative Studie, um die Machbarkeit und das Potenzial einer Maus- und Tastatur-unabhängigen Steuerung durch kamerabasierte Objekterkennung zu verstehen.
+            </p>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Projektablauf & Methodik</h2>
+            <div class="space-y-8 mb-6">
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">1. Recherche</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Da es sich hierbei um meinen ersten Kontakt mit Computer Vision und der Anwendung von vortrainierten Modellen handelte, musste ich zunächst einmal lernen, womit ich es denn zu tun haben würde. Natürlich konnte ich mir auch YouTube-Tutorials zu derartigen Projekten ansehen, wovon bereits einiege existierten, ich wollte jedoch nicht nur ein cooles Projekt in petto haben, sondern auch verstehen, womit ich denn eigentlich genau arbeiten würde.<br>
+                        So begann meine Recherche-Arbeit damit, dass ich mich über Computer Vision informierte und rein von der oberflächlichen Theorie her erschien mir dies zunächst ziemlich simpel: Computer "<i>sieht</i>" etwas und gibt einen Output als Reaktion. Als jemand, der zu dem Zeitpunkt noch ziemlich ahnungslos war, unterschätzte ich die Thematik, bis ich auf einen Begriff stieß, der meine Neugier weckte: <b>Machine Learning</b>.<br>
+                        Ab hier wurde es interessant, denn natürlich wollte ich wissen, was Machine Learning ist und wie es funktioniert. Auch hier fand ich die grobe, oberflächliche Theorie ziemlich simpel: das Programm bekommt einen Input, rechnet damit herum und gibt einen Output. Und dann stieß ich auf die lineare Regression und merkte, dass ich noch viel zu lernen hatte.<br>
+                        Da nicht alles, was ich mir im Rahmen dieser Phase beibrachte für dieses Projekt von Relevanz ist, möchte ich zusammenfassend sagen, dass ich mich mit Stochastik, linearer Algebra, Statistik (deskriptiv und induktiv), den Grundlagen des maschinellen Lernens und den Grundlagen der neuronalen Netze auseinandersetzte.<br>
+                        Erst als ich das Gefühl hatte, zu wissen, womit ich arbeiten würde, begann ich damit, mich konkreter mit der API von OpenCV zu beschäftigen und währenddessen nach einer Möglichkeit zu suchen, Hand-Tracking in meinem Python-Code zu ermöglichen. Glücklicherweise erfuhr ich recht schnell von <code>MediaPipe</code>, denn ich befürchtete bereits, die notwendigen Modelle selbst entwickeln zu müssen, was mit meinen Ressourcen mit Sicherheit nicht funktioniert hätte. Jedenfalls machte ich mich auch mit <code>MediaPipe</code> vertraut und konnte nun endlich mit dem Programmieren beginnen.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">2. Hände erkennen, verfolgen und markieren</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                        Alles, was sich um das Erkennen, Verfolgen und Markieren von Händen und Fingern dreht, sollte innerhalb einer Klasse stattfinden - der <code>HandDetector</code>-Klasse. Das Prinzip ist ganz einfach: Wenn eine Hand erkannt wird sie von einer Box umrandet, deren Größe sich an die Größe der Hand auf dem Bild anpasst. Zusätzlich sollen die sog. <i>Landmarks</i> gezeichnet werden. In diesem Kontext sind Landmarks im Grunde spezifische Punkte oder Merkmale, die auf einem Bild oder einem Objekt erkannt und visuell dargestellt werden. Diese repräsentieren Form und Struktur des Objekts. Neben den Zeichnungen sollte auch annotiert werden, ob es sich bei einer identifizierten Hand um eine linke oder rechte Hand handelt.<br>
+                        Nachdem ich mir Gedanken über die notwendigen Argumente und Attribute meiner Klasse machte, programmierte ich sie folgendermaßen.
+                    </p>
+                    <pre><code class="language-python">class HandDetector:
+    """
+    A class to detect and track hands using MediaPipe.
+    Provides functionalities to find hand landmarks, determine finger states (up/down),
+    and calculate distances between landmarks.
+    """
+
+    def __init__(self, mode: bool = False, max_hands: int = 2,
+                 min_detection_confidence: float = 0.5, min_tracking_confidence: float = 0.5):
+        """
+        Initializes the HandDetector with MediaPipe hand tracking solution.
+
+        Args:
+            mode (bool): If set to False, the solution treats the input images
+                         as a batch, and expects the input images to be static
+                         and finite. If True, treats input as a video stream.
+            max_hands (int): Maximum number of hands to detect.
+            min_detection_confidence (float): Minimum confidence value ([0.0, 1.0])
+                                             for hand detection to be considered successful.
+            min_tracking_confidence (float): Minimum confidence value ([0.0, 1.0])
+                                            for the hand landmarks to be tracked successfully.
+        """
+        self.mode = mode
+        self.max_hands = max_hands
+        self.min_detection_confidence = min_detection_confidence
+        self.min_tracking_confidence = min_tracking_confidence
+
+        self.mp_hands = mediapipe.solutions.hands
+        self.hands = self.mp_hands.Hands(
+            self.mode,
+            max_num_hands=self.max_hands,
+            min_detection_confidence=self.min_detection_confidence,
+            min_tracking_confidence=self.min_tracking_confidence
+        )
+        self.mp_draw = mediapipe.solutions.drawing_utils
+        
+        # Tip IDs for each finger (thumb, index, middle, ring, pinky)
+        self.tip_ids = [4, 8, 12, 16, 20]</code></pre>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                        Die Werte für das Attribut <code>tip_ids</code> können der <a href="https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker?hl=de" class="transition-all duration-300 border-b-2 border-[#14B8A6] hover:border-transparent">Anleitung zur Erkennung von Handmarken</a> der folgenden Grafik entnommen werden.
+                    </p>
+                    <div class="mb-4">
+                        <img src="https://ai.google.dev/static/mediapipe/images/solutions/hand-landmarks.png?hl=de" alt="Screenshot: Erkannte Hände und Landmarken" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
+                        <small class="text-sm text-gray-500 dark:text-gray-400">Knochenkoordinaten der Hand-Landmarken.<br>Quelle: <a href="https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker?hl=de" class="transition-all duration-300 border-b-2 border-[#14B8A6] hover:border-transparent">Google AI for Developers</a></small>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                        Diese Klasse muss nun dazu im Stande sein, die o. g. Anforderungen zu erfüllen. Dafür programmierte ich eine Methode, welche sich um genau das kümmern sollte:
+                    </p>
+                    <pre><code class="language-python">def find_hands(self, img, draw: bool = True, flip_type: bool = True) -> tuple:
+    """
+    Finds hands in an image and processes their landmarks.
+
+    Args:
+        img (np.array): The input image (BGR format).
+        draw (bool): If True, draws landmarks and bounding boxes on the image.
+        flip_type (bool): If True, flips the detected hand type (e.g., Right becomes Left)
+                            to match user's perspective when camera is mirrored.
+
+    Returns:
+        tuple: A tuple containing:
+                - list: A list of dictionaries, each representing a detected hand
+                        with 'lmList', 'bbox', 'center', and 'type'.
+                - np.array: The image with (optional) drawings.
+    """
+    image_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    self.results = self.hands.process(image_rgb)
+    all_hands = []
+    img_height, img_width, _ = img.shape
+
+    if self.results.multi_hand_landmarks:
+        for hand_type_data, hand_landmarks in zip(self.results.multi_handedness, self.results.multi_hand_landmarks):
+            current_hand = {}
+            landmark_list = []
+            x_coords = []
+            y_coords = []
+
+            for identification, lm in enumerate(hand_landmarks.landmark):
+                px, py = int(lm.x * img_width), int(lm.y * img_height)
+                landmark_list.append([px, py])
+                x_coords.append(px)
+                y_coords.append(py)
+
+            # Calculate bounding box
+            x_min, x_max = min(x_coords), max(x_coords)
+            y_min, y_max = min(y_coords), max(y_coords)
+            box_width, box_height = x_max - x_min, y_max - y_min
+            bbox = (x_min, y_min, box_width, box_height)
+            
+            # Center of the bounding box
+            cx, cy = bbox[0] + (bbox[2] // 2), bbox[1] + (bbox[3] // 2)
+
+            current_hand["lmList"] = landmark_list
+            current_hand["bbox"] = bbox
+            current_hand["center"] = (cx, cy)
+
+            # Determine hand type (left/right)
+            detected_type = hand_type_data.classification[0].label
+            if flip_type:
+                current_hand["type"] = "Left" if detected_type == "Right" else "Right"
+            else:
+                current_hand["type"] = detected_type
+            
+            all_hands.append(current_hand)
+
+            if draw:
+                self.mp_draw.draw_landmarks(img, hand_landmarks,
+                                            self.mp_hands.HAND_CONNECTIONS)
+                # Draw bounding box and hand type label
+                cv2.rectangle(img, (bbox[0] - 20, bbox[1] - 20),
+                                (bbox[0] + bbox[2] + 20, bbox[1] + bbox[3] + 20),
+                                (255, 0, 255), 2)
+                cv2.putText(img, current_hand["type"], (bbox[0] - 30, bbox[1] - 30),
+                            cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 255), 2)
+    
+    return all_hands, img</code></pre>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">2. Hand- und Landmarkenerkennung in Echtzeit</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Jeder Frame des Videostroms wurde in Echtzeit verarbeitet. MediaPipe wurde eingesetzt, um Hände zuverlässig zu erkennen und 21 präzise 3D-Landmarken pro Hand zu extrahieren. Diese Landmarken repräsentieren wichtige Punkte an den Fingern und Handflächen. Visuelles Feedback wurde durch das Zeichnen dieser Landmarken und Handverbindungen auf dem Live-Bild gegeben.<br>
+                        Die nachfolgende Funktion zeigt, wie <code>OpenCV</code> in Verbindung mit dem <code>HandDetector</code> implementiert wurde. Anschließend folgt eine Video-Demonstration.
+                    </p>
+                    <pre><code class="language-python">def main():
+    """
+    Demonstrates the HandDetector functionality.
+    This function is for testing the HandDetector independently.
+    """
+    cap = cv2.VideoCapture(0)
+    if not cap.isOpened():
+        print("Error: Could not open webcam.")
+        sys.exit()
+
+    detector = HandDetector(max_hands=2, min_detection_confidence=0.7)
+    
+    prev_time = 0
+
+    print("Running Hand Detector Demo. Press 'q' to quit.")
+
+    while True:
+        success, img = cap.read()
+        if not success:
+            print("Failed to read frame from camera.")
+            break
+
+        hands, img = detector.find_hands(img, draw=True)
+
+        if hands:
+            # Process Hand 1
+            hand1 = hands[0]
+            lm_list_1 = hand1["lmList"]
+
+            # Example: Draw circle on index finger tip of hand 1
+            cv2.circle(img, (lm_list_1[8][0], lm_list_1[8][1]), 10, (0, 255, 0), cv2.FILLED)
+
+            if len(hands) == 2:
+                # Process Hand 2
+                hand2 = hands[1]
+                lm_list_2 = hand2["lmList"]
+
+                # Example: Draw circle on index finger tip of hand 1
+                cv2.circle(img, (lm_list_2[8][0], lm_list_2[8][1]), 10, (0, 255, 0), cv2.FILLED)
+
+        # Calculate and display FPS
+        current_time = time.time()
+        fps = 1 / (current_time - prev_time)
+        prev_time = current_time
+        cv2.putText(img, f"FPS: {int(fps)}", (10, 30), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 2)
+
+        cv2.imshow("Hand Tracking Demo", img)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+    cap.release()
+    cv2.destroyAllWindows()</code></pre>
+                    <div class="mb-4">
+                         <video controls class="w-[80%]">
+                            <source
+                                src="assets/demo_1.mp4"
+                                type="video/mp4"
+                            />
+                         </video>
+                        <small class="text-sm text-gray-500 dark:text-gray-400">Live-Visualisierung der Hand-Landmarken.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">3. Landmarkenverarbeitung und Fingerstatus</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Die extrahierten Landmarken-Koordinaten wurden weiterverarbeitet, um den Zustand einzelner Finger (z.B. geöffnet oder geschlossen) zu bestimmen. Dies war entscheidend, um verschiedene Handgesten zu identifizieren.
+                    </p>
+                    <pre><code class="language-python">def fingers_up(self, hand_data: dict) -> list:
+    """
+    Determines which fingers are extended (up) for a given hand.
+
+    Args:
+        hand_data (dict): A dictionary containing 'lmList' and 'type' for a hand.
+
+    Returns:
+        list: A list of 0s and 1s, where 1 means the finger is up, and 0 means down.
+                Order: [Thumb, Index, Middle, Ring, Pinky].
+    """
+    finger_status = []
+    landmark_list = hand_data["lmList"]
+    hand_type = hand_data["type"]
+
+    # Thumb
+    if hand_type == "Right":
+        if landmark_list[self.tip_ids[0]][0] > landmark_list[self.tip_ids[0] - 1][0]:
+            finger_status.append(1)  # Thumb is up
+        else:
+            finger_status.append(0)  # Thumb is down
+    else:  # Left hand
+        if landmark_list[self.tip_ids[0]][0] < landmark_list[self.tip_ids[0] - 1][0]:
+            finger_status.append(1)  # Thumb is up
+        else:
+            finger_status.append(0)  # Thumb is down
+
+    # Other four fingers (Index, Middle, Ring, Pinky)
+    # Compare tip y-coordinate to the y-coordinate of the joint below it
+    for i in range(1, 5):
+        if landmark_list[self.tip_ids[i]][1] < landmark_list[self.tip_ids[i] - 2][1]:
+            finger_status.append(1)  # Finger is up
+        else:
+            finger_status.append(0)  # Finger is down
+    
+    return finger_status</code></pre>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">4. Gesten-zu-Maus-Mapping</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Die erkannten Handgesten wurden in Computer-Eingabebefehle übersetzt. Die Spitze des Zeigefingers wurde genutzt, um die Mausposition auf dem Bildschirm zu steuern. Eine Glättungsfunktion sorgte für flüssige Bewegungen. Klicks wurden durch eine "Pinch"-Geste (z.B. Daumen und Zeigefinger zusammenführen) ausgelöst, während Scroll-Funktionen bestimmten vertikalen Handbewegungen zugeordnet wurden. Die letzteren drei Aktionen verlangten nach einer Erweiterung der <code>HandDetector</code>-Klasse um eine Methode, welche die Distanz zwischen zwei Landmarken berechnet und zurückgibt.
+                    </p>
+                    <pre><code class="language-python">@staticmethod
+def find_distance(p1: list, p2: list, img=None) -> tuple:
+    """
+    Calculates the Euclidean distance between two points.
+    Optionally draws a line and circles on an image.
+
+    Args:
+        p1 (list): [x, y] coordinates of the first point.
+        p2 (list): [x, y] coordinates of the second point.
+        img (np.array, optional): The image to draw on. Defaults to None.
+
+    Returns:
+        tuple: A tuple containing:
+                - float: The distance between the two points.
+                - tuple: A tuple (x1, y1, x2, y2, cx, cy) containing coordinates
+                        of the points and their midpoint.
+    """
+    x1, y1 = p1
+    x2, y2 = p2
+    cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
+    
+    length = math.hypot(x2 - x1, y2 - y1)
+    info = (x1, y1, x2, y2, cx, cy)
+
+    if img is not None:
+        cv2.circle(img, (x1, y1), 10, (255, 0, 255), cv2.FILLED)
+        cv2.circle(img, (x2, y2), 10, (255, 0, 255), cv2.FILLED)
+        cv2.line(img, (x1, y1), (x2, y2), (255, 0, 255), 5)
+        cv2.circle(img, (cx, cy), 10, (255, 0, 255), cv2.FILLED)
+        return length, info, img # Return image as well if drawing
+    else:
+        return length, info</code></pre>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                        Die virtuelle Maus konnte nun programmiert werden. Dafür wurde ein neues Python-Script angelegt.
+                    </p>
+
+
+                    <div class="code-tabs-container bg-gray-800 dark:bg-gray-900 rounded-lg shadow-md mb-6">
+                        <div class="flex border-b border-gray-700 dark:border-gray-700">
+                            <button class="tab-button px-4 py-2 text-sm font-semibold rounded-tl-lg
+                                        bg-gray-700 dark:bg-gray-800 text-white cursor-pointer
+                                        hover:bg-gray-600 dark:hover:bg-gray-700
+                                        transition-colors duration-200"
+                                        data-tab="vmouse-init-tab1">
+                                Konfigurationen
+                            </button>
+                            <button class="tab-button px-4 py-2 text-sm font-semibold rounded-tr-lg
+                                        bg-gray-900 dark:bg-gray-950 text-gray-400 cursor-pointer
+                                        hover:bg-gray-800 dark:hover:bg-gray-900
+                                        transition-colors duration-200"
+                                        data-tab="vmouse-init-tab2">
+                                Virtuelle Maus
+                            </button>
+                        </div>
+
+                        <div class="tab-content-container p-4">
+                            <div id="vmouse-init-tab1" class="tab-content block">
+                                <pre><code class="language-python">class MouseConfig:
+    """Configuration class for Virtual Mouse parameters."""
+    CAM_WIDTH = 1500
+    CAM_HEIGHT = 1000
+    FRAME_REDUCTION = 100  # Reduces the active area of the camera frame
+    SMOOTHENING_FACTOR = 7  # Higher value means more smoothing, slower movement
+    DETECTION_CONFIDENCE = 0.75 # Min confidence for hand detection in hand_tracking module
+
+    # Thresholds for gestures (in pixels)
+    CLICK_THRESHOLD = 30    # Distance between index and middle finger for left click
+    RIGHT_CLICK_SPREAD_THRESHOLD = 90 # Distance between thumb and index for right click
+    
+    # Scroll-related parameters for WIPE gesture
+    SCROLL_VELOCITY_THRESHOLD = 5 # Minimum vertical hand movement per frame to initiate scroll
+    SCROLL_SPEED_MULTIPLIER = 0.5 # How much to multiply the hand's vertical velocity for scroll amount
+    MAX_SCROLL_SPEED = 25   # Maximum scroll speed per frame for swipe
+    SCROLL_THRESHOLD = CLICK_THRESHOLD  # Maximum distance between index and middle finger required to initiate scroll
+    
+    # Visuelles Feedback für Scroll-Geschwindigkeit
+    SPEED_LINE_INTERVAL = 5 # Draw a line for every 5 units of speed increase (relative to MAX_SCROLL_SPEED)
+                                </code></pre>
+                            </div>
+                            <div id="vmouse-init-tab2" class="tab-content hidden">
+                                <pre><code class="language-python">class VirtualMouse:
+    """
+    A class that implements a virtual mouse controlled by hand gestures.
+    It uses a webcam to detect hand movements and finger positions
+    to simulate mouse actions like moving, clicking, and scrolling.
+    """
+
+    def __init__(self, config: MouseConfig = MouseConfig()):
+        """
+        Initializes the VirtualMouse with camera, hand detector, and controllers.
+
+        Args:
+            config (MouseConfig): Configuration object for mouse parameters.
+        """
+        self.config = config
+
+        # Validate FRAME_REDUCTION to ensure active region is positive
+        if self.config.FRAME_REDUCTION * 2 >= self.config.CAM_WIDTH or \
+           self.config.FRAME_REDUCTION * 2 >= self.config.CAM_HEIGHT:
+            print("Warning: FRAME_REDUCTION is too large. It will be adjusted to ensure a valid active region.")
+            # Set FRAME_REDUCTION to half of the smaller dimension minus a small buffer
+            # to ensure the active region always has a positive size.
+            self.config.FRAME_REDUCTION = min(self.config.CAM_WIDTH, self.config.CAM_HEIGHT) // 2 - 10
+            if self.config.FRAME_REDUCTION < 0: # Ensure it's at least 0 if very small CAM_WIDTH/HEIGHT
+                self.config.FRAME_REDUCTION = 0
+            print(f"Adjusted FRAME_REDUCTION to: {self.config.FRAME_REDUCTION}")
+
+
+        self.keyboard = KeyboardController()
+        self.mouse_controller = MouseController()
+
+        self.prev_location_x, self.prev_location_y = 0, 0
+        self.curr_location_x, self.curr_location_y = 0, 0
+
+        self.cap = cv2.VideoCapture(0)
+        if not self.cap.isOpened():
+            print("Error: Could not open webcam.")
+            sys.exit(1)
+        self.cap.set(3, self.config.CAM_WIDTH)
+        self.cap.set(4, self.config.CAM_HEIGHT)
+
+        # Retrieve actual camera dimensions after setting
+        # This is crucial as some cameras might not support the exact resolution
+        self.actual_cam_width = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        self.actual_cam_height = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        print(f"Actual Camera Resolution: {self.actual_cam_width}x{self.actual_cam_height}")
+
+
+        self.prev_time = 0
+        self.detector = htm.HandDetector(max_hands=1, min_detection_confidence=self.config.DETECTION_CONFIDENCE)
+        self.screen_width, self.screen_height = autopy.screen.size()
+
+        # New variables for swipe scroll functionality
+        self.prev_hand_center_y = None  # Previous Y-position of hand center for velocity calculation
+        self.is_scrolling_active = False # Flag to indicate if scroll mode is active
+
+        print(f"Screen Resolution: {int(self.screen_width)}x{int(self.screen_height)}")
+        print("Virtual Mouse Initialized. Press 'q' to quit.")
+
+    def _display_fps(self, img):
+        """Calculates and displays FPS on the image."""
+        current_time = time.time()
+        fps = 1 / (current_time - self.prev_time)
+        self.prev_time = current_time
+        cv2.putText(img, f"FPS: {int(fps)}", (10, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+
+    def _draw_active_region(self, img):
+        """Draws the rectangle representing the active mouse control region."""
+        # Use actual_cam_width/height here
+        x1 = self.config.FRAME_REDUCTION
+        y1 = self.config.FRAME_REDUCTION
+        x2 = self.actual_cam_width - self.config.FRAME_REDUCTION
+        y2 = self.actual_cam_height - self.config.FRAME_REDUCTION
+
+        # Ensure the region is valid (min 0 or a small positive value)
+        if x2 < x1: x2 = x1 + 1 # Ensure at least 1 pixel width
+        if y2 < y1: y2 = y1 + 1 # Ensure at least 1 pixel height
+
+        cv2.rectangle(img, (x1, y1), (x2, y2), (20, 0, 100), 2)
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                        Für jede Aktion (Cursor-Bewegung, Linksklick, Rechtsklick und Scrolling) wurde eine eigene Hilfsmethode angelegt. Diese werden stets genau dann aufgerufen, wenn bestimmte Gesten erkannt werden.
+                    </p>
+                    <div class="code-tabs-container bg-gray-800 dark:bg-gray-900 rounded-lg shadow-md mb-6">
+                        <div class="flex border-b border-gray-700 dark:border-gray-700">
+                            <button class="tab-button px-4 py-2 text-sm font-semibold rounded-tl-lg
+                                        bg-gray-700 dark:bg-gray-800 text-white cursor-pointer
+                                        hover:bg-gray-600 dark:hover:bg-gray-700
+                                        transition-colors duration-200"
+                                        data-tab="actions-tab1">
+                                Cursor-Steuerung
+                            </button>
+                            <button class="tab-button px-4 py-2 text-sm font-semibold
+                                        bg-gray-900 dark:bg-gray-950 text-gray-400 cursor-pointer
+                                        hover:bg-gray-800 dark:hover:bg-gray-900
+                                        transition-colors duration-200"
+                                        data-tab="actions-tab2">
+                                Linksklick
+                            </button>
+                            <button class="tab-button px-4 py-2 text-sm font-semibold
+                                        bg-gray-900 dark:bg-gray-950 text-gray-400 cursor-pointer
+                                        hover:bg-gray-800 dark:hover:bg-gray-900
+                                        transition-colors duration-200"
+                                        data-tab="actions-tab3">
+                                Rechtsklick
+                            </button>
+                            <button class="tab-button px-4 py-2 text-sm font-semibold rounded-tr-lg
+                                        bg-gray-900 dark:bg-gray-950 text-gray-400 cursor-pointer
+                                        hover:bg-gray-800 dark:hover:bg-gray-900
+                                        transition-colors duration-200"
+                                        data-tab="actions-tab4">
+                                Scrolling
+                            </button>
+                        </div>
+
+                        <div class="tab-content-container p-4">
+                            <div id="actions-tab1" class="tab-content block">
+                                <pre><code class="language-python">def _handle_mouse_movement(self, index_x: int, index_y: int, img):
+    """
+    Translates hand movement to mouse cursor movement.
+    Applies smoothening and inverts X-axis for natural feel.
+    """
+    # Interpolate index finger position to screen coordinates
+    # Use actual_cam_width/height for interpolation source range
+    x3 = np.interp(index_x, 
+                    (self.config.FRAME_REDUCTION, self.actual_cam_width - self.config.FRAME_REDUCTION), 
+                    (0, self.screen_width))
+    y3 = np.interp(index_y, 
+                    (self.config.FRAME_REDUCTION, self.actual_cam_height - self.config.FRAME_REDUCTION), 
+                    (0, self.screen_height))
+    
+    # Smooth the movement
+    self.curr_location_x = self.prev_location_x + (x3 - self.prev_location_x) / self.config.SMOOTHENING_FACTOR
+    self.curr_location_y = self.prev_location_y + (y3 - self.prev_location_y) / self.config.SMOOTHENING_FACTOR
+
+    # Move mouse, invert X for natural feel (e.g., moving hand right moves cursor right)
+    autopy.mouse.move(self.screen_width - self.curr_location_x, self.curr_location_y)
+    
+    # Draw a circle at the index finger tip on the camera feed
+    cv2.circle(img, (index_x, index_y), 15, (255, 0, 0), cv2.FILLED)
+    
+    self.prev_location_x, self.prev_location_y = self.curr_location_x, self.curr_location_y
+                                </code></pre>
+                            </div>
+                            <div id="actions-tab2" class="tab-content hidden">
+                                <pre><code class="language-python">def _handle_left_click(self, lm_list, img):
+    """Handles left click gesture (index and middle fingers together)."""
+    # Calculate distance between index and middle finger tips
+    length, info, _ = self.detector.find_distance(lm_list[8], lm_list[12], img=img) 
+    
+    # Only click if distance is below threshold AND click is not already active
+    if length < self.config.CLICK_THRESHOLD and not self.is_left_click_active:
+        cv2.circle(img, (info[4], info[5]), 15, (0, 255, 0), cv2.FILLED)
+        autopy.mouse.click()
+        self.is_left_click_active = True # Set flag to true after click
+    
+    # Reset flag if gesture is released (fingers are no longer close enough)
+    elif length >= self.config.CLICK_THRESHOLD:
+        self.is_left_click_active = False
+                                </code></pre>
+                            </div>
+                            <div id="actions-tab3" class="tab-content hidden">
+                                <pre><code class="language-python">def _handle_right_click(self, lm_list, img):
+    """Handles right click gesture (thumb and index finger spread)."""
+    length, info, _ = self.detector.find_distance(lm_list[4], lm_list[8], img=img) 
+
+    # Only click if distance is above threshold AND click is not already active
+    if length > self.config.RIGHT_CLICK_SPREAD_THRESHOLD and not self.is_right_click_active:
+        cv2.circle(img, (info[4], info[5]), 15, (0, 255, 0), cv2.FILLED)
+        self.mouse_controller.click(Button.right)
+        self.is_right_click_active = True # Set flag to true after click
+        
+    # Reset flag if gesture is released (fingers are no longer spread enough)
+    elif length <= self.config.RIGHT_CLICK_SPREAD_THRESHOLD:
+        self.is_right_click_active = False
+                                </code></pre>
+                            </div>
+                            <div id="actions-tab4" class="tab-content hidden">
+                                <pre><code class="language-python">def _handle_swipe_scroll(self, hand_center_y: int, img):
+    """
+    Handles scrolling using a swipe gesture with an open hand,
+    based on the hand's vertical velocity.
+    """
+    if not self.is_scrolling_active:
+        self.prev_hand_center_y = hand_center_y
+        self.is_scrolling_active = True
+        print(f"Swipe Scroll mode activated. Current Y: {hand_center_y}")
+    
+    scroll_amount = 0
+    scroll_direction_text = ""
+    actual_speed = 0
+
+    if self.prev_hand_center_y is not None:
+        # Calculate vertical velocity of the hand
+        vertical_velocity = self.prev_hand_center_y - hand_center_y # Positive for upward swipe (scroll up)
+
+        if abs(vertical_velocity) > self.config.SCROLL_VELOCITY_THRESHOLD:
+            # Scale scroll amount by velocity
+            scaled_scroll_amount = vertical_velocity * self.config.SCROLL_SPEED_MULTIPLIER
+            
+            # Cap the scroll amount
+            if abs(scaled_scroll_amount) > self.config.MAX_SCROLL_SPEED:
+                scroll_amount = int(np.sign(scaled_scroll_amount) * self.config.MAX_SCROLL_SPEED)
+            else:
+                scroll_amount = int(scaled_scroll_amount)
+            
+            actual_speed = abs(scroll_amount) # Store absolute speed for display
+
+            self.mouse_controller.scroll(0, scroll_amount) # Scroll
+            
+            if scroll_amount > 0:
+                scroll_direction_text = f"SCROLL UP: {actual_speed}"
+            else:
+                scroll_direction_text = f"SCROLL DOWN: {actual_speed}"
+
+        # Update previous hand Y for next frame's velocity calculation
+        self.prev_hand_center_y = hand_center_y
+
+    # Display scroll mode and current speed
+    cv2.putText(img, "SWIPE SCROLL", (self.actual_cam_width // 2 - 100, 30), # Use actual_cam_width
+                cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 255), 2)
+    if scroll_direction_text:
+        cv2.putText(img, scroll_direction_text, (50, self.actual_cam_height - 50), # Use actual_cam_height
+                    cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 255), 3)
+
+    # Draw a circle at the hand's center for visual tracking
+    # Use actual_cam_width here for positioning
+    cv2.circle(img, (self.actual_cam_width // 2, hand_center_y), 15, (255, 0, 255), cv2.FILLED)
+
+    # Draw dynamic speed indicator lines based on current hand position
+    for i in range(self.config.SPEED_LINE_INTERVAL, int(self.config.MAX_SCROLL_SPEED) + 1, self.config.SPEED_LINE_INTERVAL):
+        line_offset = i / self.config.SCROLL_SPEED_MULTIPLIER 
+
+        # Line for scrolling UP
+        line_y_up = int(hand_center_y - line_offset)
+        if line_y_up > 0 and line_y_up < self.actual_cam_height: # Use actual_cam_height
+            cv2.line(img, (0, line_y_up), (self.actual_cam_width, line_y_up), (0, 165, 255), 1) # Use actual_cam_width
+            cv2.putText(img, f"Vel {i}+", (self.actual_cam_width - 150, line_y_up - 5), cv2.FONT_HERSHEY_PLAIN, 1, (0, 165, 255), 1)
+
+        # Line for scrolling DOWN
+        line_y_down = int(hand_center_y + line_offset)
+        if line_y_down > 0 and line_y_down < self.actual_cam_height: # Use actual_cam_height
+            cv2.line(img, (0, line_y_down), (self.actual_cam_width, line_y_down), (0, 165, 255), 1) # Use actual_cam_width
+            cv2.putText(img, f"Vel {i}+", (self.actual_cam_width - 150, line_y_down + 20), cv2.FONT_HERSHEY_PLAIN, 1, (0, 165, 255), 1)
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">5. Erläuterung: Visuelles Feedback und Overlay</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Um die Benutzerführung zu erleichtern und den Tracking-Prozess transparent zu machen, wurde das Live-Kamerabild mit Overlays versehen. Dazu gehörten das Zeichnen der erkannten Hand-Landmarken, der Handverbindungen und von Interaktionszonen (z.B. Begrenzungsrahmen für die Maussteuerung). Visuelles Feedback für Aktionen wie Klicks wurde ebenfalls integriert.
+                    </p>
+                    <div class="mb-4">
+                        <div class="code-tabs-container bg-gray-800 dark:bg-gray-900 rounded-lg shadow-md mb-6">
+                            <div class="flex border-b border-gray-700 dark:border-gray-700">
+                                <button class="tab-button px-4 py-2 text-sm font-semibold rounded-tl-lg
+                                            bg-gray-700 dark:bg-gray-800 text-white cursor-pointer
+                                            hover:bg-gray-600 dark:hover:bg-gray-700
+                                            transition-colors duration-200"
+                                            data-tab="feedback-tab1">
+                                    Bewegungs-Modus
+                                </button>
+                                <button class="tab-button px-4 py-2 text-sm font-semibold
+                                            bg-gray-700 dark:bg-gray-800 text-white cursor-pointer
+                                            hover:bg-gray-600 dark:hover:bg-gray-700
+                                            transition-colors duration-200"
+                                            data-tab="feedback-tab2">
+                                    Linksklick-Modus
+                                </button>
+                                <button class="tab-button px-4 py-2 text-sm font-semibold
+                                            bg-gray-700 dark:bg-gray-800 text-white cursor-pointer
+                                            hover:bg-gray-600 dark:hover:bg-gray-700
+                                            transition-colors duration-200"
+                                            data-tab="feedback-tab3">
+                                    Rechtsklick-Modus
+                                </button>
+                                <button class="tab-button px-4 py-2 text-sm font-semibold rounded-tr-lg
+                                            bg-gray-700 dark:bg-gray-800 text-white cursor-pointer
+                                            hover:bg-gray-600 dark:hover:bg-gray-700
+                                            transition-colors duration-200"
+                                            data-tab="feedback-tab4">
+                                    Scroll-Modus
+                                </button>
+                            </div>
+                            <div class="tab-content-container p-4">
+                                <div id="feedback-tab1" class="tab-content block">
+                                    <img src="assets/move_mode.png" alt="Screenshot: Visuelles Feedback des Bewegungs-Modus auf dem Kamerabild" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
+                                    <small class="text-sm text-gray-500 dark:text-gray-400">Screenshot: Visuelles Feedback des Bewegungs-Modus auf dem Kamerabild.</small>
+                                </div>
+                                <div id="feedback-tab2" class="tab-content hidden">
+                                    <img src="assets/left_click_mode.png" alt="Screenshot: Visuelles Feedback des Linksklick-Modus auf dem Kamerabild" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
+                                    <small class="text-sm text-gray-500 dark:text-gray-400">Screenshot: Visuelles Feedback des Linksklick-Modus auf dem Kamerabild.</small>
+                                </div>
+                                <div id="feedback-tab3" class="tab-content hidden">
+                                    <img src="assets/right_click_mode.png" alt="Screenshot: Visuelles Feedback des Rechtsklick-Modus auf dem Kamerabild" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
+                                    <small class="text-sm text-gray-500 dark:text-gray-400">Screenshot: Visuelles Feedback des Rechtsklick-Modus auf dem Kamerabild.</small>
+                                </div>
+                                <div id="feedback-tab4" class="tab-content hidden">
+                                    <img src="assets/scroll_mode.png" alt="Screenshot: Visuelles Feedback des Scroll-Modus auf dem Kamerabild" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
+                                    <small class="text-sm text-gray-500 dark:text-gray-400">Screenshot: Visuelles Feedback des Scroll-Modus auf dem Kamerabild.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">6. Erläuterung: Optimierung und Kalibrierung</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Die Präzision und Reaktionsfähigkeit des Systems wurden durch iterative Anpassungen optimiert. Dies umfasste die Feinabstimmung von Glättungsfaktoren für die Cursorbewegung, die Kalibrierung von Erkennungsschwellen für Gesten (z.B. Klick-Distanz). Ziel war es, eine intuitive und zuverlässige Benutzererfahrung zu gewährleisten.
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Finale Demonstration</h2>
+            <div class="mb-4">
+                <video controls class="w-[80%]">
+                    <source
+                        src="assets/final_demo.mp4"
+                        type="video/mp4"
+                    />
+                </video>
+                <small class="text-sm text-gray-500 dark:text-gray-400">Live-Visualisierung der virtuellen Maus.</small>
+            </div>
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Ergebnisse & Features</h2>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li><b>Berührungslose Cursorsteuerung:</b> Präzise und flüssige Mausbewegung allein durch die Bewegung des Zeigefingers.</li>
+                <li><b>Gestenbasierte Klick- und Scrollfunktionen:</b> Intuitive Klicks (z.B. Pinch-Geste) und Scrollen (durch vertikale Handbewegungen oder spezifische Fingerkombinationen).</li>
+                <li><b>Echtzeit-Handtracking:</b> Robuste Erkennung und Verfolgung von Händen und Fingern im Live-Videostrom.</li>
+                <li><b>Visuelles Feedback:</b> Klare Overlays auf dem Kamerabild zur Anzeige von erkannten Landmarken, Interaktionszonen und ausgeführten Aktionen.</li>
+                <li><b>Plug-and-Play-Fähigkeit:</b> Einfache Einrichtung mit Standard-Webcams.</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Erkenntnisse & Learnings</h2>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li><b>Computer Vision:</b> Tiefes Verständnis für die Funktionsweise von Pre-trained-Modellen (MediaPipe) und deren Anwendung in Echtzeit.</li>
+                <li><b>Echtzeit-Verarbeitung:</b> Lernen über die Herausforderungen bei der Verarbeitung von Videostreams, Latenz und Optimierungsstrategien.</li>
+                <li><b>Mathematische Grundlagen:</b> Praktische Anwendung von Koordinatentransformationen, Vektorberechnungen und Distanzmessungen (mit NumPy) zur Übersetzung von physischen Gesten in digitale Aktionen.</li>
+                <li><b>Nutzererfahrung (UX):</b> Sensibilisierung für die Wichtigkeit intuitiver Gesten, präziser Reaktion und klarem visuellen Feedbacks für eine effektive berührungslose Steuerung.</li>
+                <li><b>Eigenständige Problemlösung:</b> Fähigkeit, ein komplexes Projekt von der Idee bis zur Implementierung selbstständig zu konzipieren, zu entwickeln und zu debuggen.</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Zukunftsaussichten</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                Das Projekt bietet eine solide Grundlage für zukünftige Erweiterungen. Denkbar ist eine umfassendere Gestenbibliothek zur Unterstützung komplexerer Computerbefehle oder die Integration in erweiterte Realität (AR) / virtuelle Realität (VR)-Umgebungen für noch immersivere Erlebnisse. Die ultimative Vision ist die Weiterentwicklung der Software, um Maus und Tastatur langfristig obsolet zu machen (ein Ziel, das für 2028 ins Auge gefasst wurde).
+            </p>
+        </section>
+        <footer class="mt-10 py-6 text-center">
+            <small class="text-sm text-gray-400 dark:text-gray-500">&copy; 2025 Keanu Sky Heitzler</small>
+        </footer>
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wähle ALLE unabhängigen Code-Tabs-Container auf der Seite aus
+            const allCodeTabsContainers = document.querySelectorAll('.code-tabs-container');
+
+            // Iteriere über jeden gefundenen Code-Tabs-Container
+            allCodeTabsContainers.forEach(container => {
+                // Innerhalb jedes Containers:
+                // Wähle NUR die Buttons und Inhalte, die zu diesem SPEZIFISCHEN CONTAINER gehören
+                const tabButtons = container.querySelectorAll('.tab-button');
+                const tabContents = container.querySelectorAll('.tab-content');
+
+                // Füge Event Listener zu den Buttons dieses Containers hinzu
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const targetTabId = button.dataset.tab; // Holt die ID des Ziel-Inhalts (z.B. "tab1", "init_tab1")
+
+                        // Deaktiviere alle Buttons in DIESEM spezifischen Container
+                        tabButtons.forEach(btn => {
+                            btn.classList.remove('bg-gray-700', 'dark:bg-gray-800', 'text-white');
+                            btn.classList.add('bg-gray-900', 'dark:bg-gray-950', 'text-gray-400');
+                        });
+
+                        // Verstecke alle Inhalte in DIESEM spezifischen Container
+                        tabContents.forEach(content => {
+                            content.classList.add('hidden');
+                            content.classList.remove('block');
+                        });
+
+                        // Aktiviere den geklickten Button in DIESEM spezifischen Container
+                        button.classList.add('bg-gray-700', 'dark:bg-gray-800', 'text-white');
+                        button.classList.remove('bg-gray-900', 'dark:bg-gray-950', 'text-gray-400');
+
+                        // Zeige den entsprechenden Inhalt in DIESEM spezifischen Container an
+                        // Wichtig: `container.querySelector` stellt sicher, dass wir nur innerhalb des aktuellen Containers suchen
+                        const activeContent = container.querySelector(`#${targetTabId}`);
+                        if (activeContent) {
+                            activeContent.classList.add('block');
+                            activeContent.classList.remove('hidden');
+
+                            // Highlight.js für den neu angezeigten Code-Block in DIESEM Container neu initialisieren
+                            if (window.hljs) {
+                                const currentCodeBlock = activeContent.querySelector('pre code');
+                                if (currentCodeBlock) {
+                                    hljs.highlightElement(currentCodeBlock);
+                                }
+                            }
+                        }
+                    });
+                });
+
+                // Optional: Den ersten Tab in jedem Container beim Laden der Seite aktivieren
+                // Dieser Klick wird jetzt nur innerhalb des jeweiligen Containers ausgelöst.
+                const initialActiveButton = container.querySelector('.tab-button');
+                if (initialActiveButton) {
+                    initialActiveButton.click();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
