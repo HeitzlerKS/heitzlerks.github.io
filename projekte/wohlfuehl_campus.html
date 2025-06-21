@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Mobile Nav Specifics (optional, wenn du JS für Toggle baust) */
+        .mobile-nav-container { 
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            border-left: 3px solid #14B8A6;
+            border-bottom: 3px solid #14B8A6;
+            border-bottom-left-radius: 2rem;
+            padding: 1rem; 
+            background-color: #161616;
+            border-top: 0.1rem solid rgba(0,0,0,0.1);
+            display: none; 
+        }
+        .mobile-nav-container.active {
+            display: block; 
+        }
+        .mobile-nav-container a { 
+            display: block;
+            font-size: 2rem; 
+            margin: 3rem 0;
+        }
+        .mobile-nav-container a:hover,
+        .mobile-nav-container a.active {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-bottom: 0.5rem solid #14B8A6;
+        }
+
+        /* Zusätzliches Styling für Code-Ausschnitte (hier auch für Methodik-Snippets) */
+        pre {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        code {
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+        }
+
+    </style>
+    <title>Keanu Sky Heitzler - Wohlfühl-Campus Projekt</title>
+</head>
+
+<body class="w-full h-screen overflow-x-hidden bg-black text-white">
+    <header class="fixed top-0 left-0 w-full px-[9%] py-4 bg-transparent flex justify-between items-center z-50">
+        <a href="../index.html" class="text-3xl text-[#14B8A6] font-extrabold cursor-pointer transition-transform duration-500 hover:scale-110">Keanu</a>
+
+        <nav class="hidden md:flex justify-center items-center">
+            <a href="../index.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]"> Startseite</a>
+            <a href="../projekte.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6] active">Projekte</a>
+            <a href="../bildungsweg.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Bildungsweg</a>
+            <a href="../berufliche_laufbahn.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Berufliche Laufbahn</a>
+            <a href="../kontakt.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Kontakt</a>
+        </nav>
+    </header>
+
+    <main class="w-full mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-6 pt-24">
+        <section class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md">
+            <h1 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-gray-300 mb-8">Semesterprojekt: Wohlfühl-Campus</h1>
+            
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Kurzinfos</h2>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Offizieller Status: </b><b class="text-green-700 dark:text-green-400 mb-6 leading-relaxed">Abgeschlossen</b></li>
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Bearbeitungszeitraum: <time datetime="2024-10-10">10. Oktober 2024</time> - <time datetime="2024-12-09">09. Dezember 2024</time></b></li>
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Fortsetzungsprojekt geplant oder nötig: </b></b><b class="text-red-700 dark:text-red-400 mb-6 leading-relaxed">Nein</b></li>
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Code wird nach Projektende gewartet: </b></b><b class="text-red-700 dark:text-red-400 mb-6 leading-relaxed">Nein</b></li>
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Privates Projekt: </b><b class="text-red-700 dark:text-red-400 mb-6 leading-relaxed">Nein</b></li>
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Modul: Analyse für Markt- und Kundendaten</b></li>
+                <li><b class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">Finale Note: </b><b class="text-green-700 dark:text-green-400 mb-6 leading-relaxed">1,7</b></li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Kurzbeschreibung</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                Dieses Semesterprojekt befasste sich mit der Verbesserung der Studienbedingungen und des Wohlbefindens am Hochschul-Campus. Es umfasste die Rekrutierung und Moderation von Fokusgruppen, die Entwicklung eines Fragebogens und die Analyse von Studierendenrückmeldungen, um konkrete Handlungsempfehlungen abzuleiten und zu präsentieren.
+            </p>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Meine Rollen & Verantwortlichkeiten</h2>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li><b>Konzeption und Durchführung von Fokusgruppen:</b> Aktive Rolle bei der Rekrutierung von Studierenden aller Studiengänge an der Fakultät und der Moderation von Fokusgruppen zur Identifikation und Definition von Stärken, Schwächen, Chancen und Risiken des Hochschul-Campus.</li>
+                <li><b>Detaillierte Datenauswertung:</b> Wesentlicher Beitrag zur Zusammenfassung und Auswertung der qualitativen Ergebnisse der Fokusgruppen. Dies erfolgte händisch, um tiefgehende Einblicke in die Nutzerbedürfnisse zu gewinnen.</li>
+                <li><b>Ableitung von Handlungsempfehlungen:</b> Maßgebliche Beteiligung an der Analyse der Auswertungsergebnisse zur Ableitung konkreter, kurzfristig umsetzbarer Handlungsempfehlungen für die Fakultät.</li>
+                <li><b>Ergebnispräsentation:</b> Unterstützung bei der Planung, Koordination und Vorbereitung der Ergebnispräsentation vor den Entscheidungsträgern der Fakultät.</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Verwendete Technologien</h2>
+            <div class="flex flex-wrap gap-2 mb-6">
+                <span class="inline-block bg-blue-600 text-white px-3 py-1 text-sm rounded-full">Sosci Survey</span>
+                <span class="inline-block bg-teal-600 text-white px-3 py-1 text-sm rounded-full">Statistische Analyse</span>
+                <span class="inline-block bg-purple-600 text-white px-3 py-1 text-sm rounded-full">Fokusgruppen</span>
+                <span class="inline-block bg-green-600 text-white px-3 py-1 text-sm rounded-full">Projektmanagement</span>
+            </div>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Problemstellung & Zielsetzung</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                Das übergeordnete Ziel des Wohlfühl-Campus-Projekts war es, die Zufriedenheit und das Wohlbefinden der Studierenden am Hochschul-Campus zu verbessern. Dies sollte durch eine fundierte und praxisnahe Analyse der aktuellen Situation erreicht werden.
+                <br><br>
+                Die konkreten Ziele umfassten:
+            </p>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li><b>Identifikation von Stärken und Schwächen:</b> Erfassung bestehender positiver Aspekte und Optimierungsbedarfe des Campuslebens durch Fokusgruppen.</li>
+                <li><b>Definition von Chancen und Risiken:</b> Ableitung von Entwicklungschancen und Analyse potenzieller Risiken basierend auf qualitativen Daten.</li>
+                <li><b>Entwicklung evidenzbasierter Handlungsempfehlungen:</b> Transformation der Erkenntnisse aus Fokusgruppen und Studierendenbefragung in konkrete, kurzfristig umsetzbare Empfehlungen zur Optimierung des Campusumfelds.</li>
+                <li><b>Erfolgreiche Kommunikation der Ergebnisse:</b> Überzeugung der Entscheidungsträger von der Relevanz und Umsetzbarkeit der Empfehlungen durch Planung, Koordination und Vorbereitung einer Ergebnispräsentation.</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Projektablauf & Methodik</h2>
+            <div class="space-y-8 mb-6">
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">1. Konzeptualisierung & Fokusgruppen-Moderation</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Zu Beginn des Projekts wurden die Forschungsfragen präzisiert und die Methodik zur Datenerhebung festgelegt. Kernstück waren die Fokusgruppen: Studierende aller Studiengänge wurden rekrutiert und in moderierten Diskussionen ihre Perspektiven, Stärken und Schwächen des Campus, sowie mögliche Chancen und Risiken erfasst.
+                    </p>
+                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-inner mb-6 border border-gray-200 dark:border-gray-700">
+                        <h4 class="font-semibold text-lg text-gray-900 dark:text-gray-100 mb-4">Interview-Auszug: Campus-Atmosphäre (redigiert und anonymisiert)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2 leading-relaxed">
+                            Dieser Auszug zeigt einen Teil der Diskussion um die Motivation der Studierenden, zur Hochschule zu kommen und dass die Möglichkeiten und Angebote des A-Gebäudes fehlen.<br>
+                            <b>Notwendiger Kontext:</b> Am <time datetime="2024-09-18">18. September 2024</time> brach gegen <time>09:00</time> Uhr ein Brand aus. Das Gebäude wurde sofort abgesperrt und das Betreten ist seither nicht gestattet. Die offizielle Pressemitteilung der HKA kann <a href="https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker?hl=de" class="transition-all duration-300 border-b-2 border-[#14B8A6] hover:border-transparent">hier</a> eingelesen werden. Innerhalb dieses Gebäudes befinden sich u. a. Cafeteria, Aula und Bibliothek der Hochschule. Die Stromversorgung des Fakultätsgebäudes Informatik und Wirtschaftsinformatik (E-Gebäude) war aufgrund der Schließung des A-Gebäudes beeinträchtigt.
+                        </p>
+                        <blockquote class="text-base text-gray-700 dark:text-gray-300 leading-relaxed border-l-4 border-[#14B8A6] pl-4 italic">
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Moderator (Ich):</b> "Was sind die Gründe für Euch auf dem Campus zu sein, abgesehen von den Vorlesungen?"</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Teilnehmer:in E:</b> "Ganz ehrlich? Eigentlich nur, um Freunde und Kommilitonen zu sehen. Die Cafeteria war da immer ein echt guter Treffpunkt; da war es meistens echt ruhig"</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Teilnehmer:in C:</b> "Hätte ich jetzt auch gesagt: Wegen Freunden und Kommilitonen. Halt, um Leute zu treffen, mit denen man sich gut versteht."</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Moderator:in D:</b> "Trefft Ihr Euch dann in freien Hörsälen?"</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Moderator:in C:</b> "Ne, die Cafeteria reicht mir da eigentlich aus."</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Moderator (Ich):</b> "Trefft Ihr auch Leute, die nicht eure Kommilitonen sind?"</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Teilnehmer:in C:</b> "Als es die Cafeteria noch gab, sah man halt einige Leute, die nicht Kommilitonen sind. Mittlerweile ist das halt eher weniger der Fall."</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Moderator (Ich):</b> "Durch den Wegfall vom A-Gebäude?"</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Teilnehmer:in C:</b> "Vielleicht teilweise, kann aber auch an meiner Arbeit liegen."</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Teilnehmer:in E:</b> "Es ist schon so, dass das A-Gebäude fehlt. Man konnte auch einfach mal einen Kaffee trinken gehen. Das geht heute nicht mehr so praktisch."</p>
+                        </blockquote>
+                        <small class="text-sm text-gray-500 dark:text-gray-400 mt-2 block">Auszug aus Fokusgruppe, Thema "Anwesenheits-Motivation".</small>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">2. Datenauswertung & Qualitative Analyse</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Die gesammelten qualitativen Daten aus den Fokusgruppen wurden anschließend manuell ausgewertet. Hierbei lag der Fokus auf der Identifikation wiederkehrender Themen, Meinungen und Bedürfnisse der Studierenden. Diese detaillierte qualitative Analyse bildete die Basis für die weitere Strukturierung der Befragung. Die qualitative Analyse erfolgte in Form der Inhaltsanalyse nach Mayring. Beispielhaft sei hier der vorherige Auszug unserer Analyse entsprechend markiert.
+                    </p>
+                    <blockquote class="text-base text-gray-700 dark:text-gray-300 leading-relaxed border-l-4 border-[#14B8A6] pl-4 italic">
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Moderator (Ich):</b> "Was sind die Gründe für Euch auf dem Campus zu sein, abgesehen von den Vorlesungen?"</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Teilnehmer:in E:</b> "Ganz ehrlich? Eigentlich nur, um <mark class="bg-green-400/[.7]">Freunde und Kommilitonen zu sehen. Die Cafeteria war da immer ein echt guter Treffpunkt</mark>; <mark class="bg-fuchsia-400/[.7]">da war es meistens echt ruhig</mark>"</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Teilnehmer:in C:</b> "Hätte ich jetzt auch gesagt: <mark class="bg-green-400/[.7]">Wegen Freunden und Kommilitonen. Halt, um Leute zu treffen</mark>, mit denen man sich gut versteht."</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Moderator:in D:</b> "Trefft Ihr Euch dann in freien Hörsälen?"</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Moderator:in C:</b> "Ne, die <mark class="bg-green-400/[.7]">Cafeteria reicht</mark> mir da eigentlich aus."</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Moderator (Ich):</b> "Trefft Ihr auch Leute, die nicht eure Kommilitonen sind?"</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Teilnehmer:in C:</b> "<mark class="bg-green-400/[.7]">Als es die Cafeteria noch gab, sah man halt einige Leute, die nicht Kommilitonen sind</mark>, besonders, weil als noch welche von der Schule während ihrer Pause rübergekommen sind. Mittlerweile ist das halt eher weniger der Fall."</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Moderator (Ich):</b> "Durch den Wegfall vom A-Gebäude?"</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Teilnehmer:in C:</b> "Vielleicht teilweise, kann aber auch an meiner Arbeit liegen."</p>
+                            <p class="mb-2"><b class="font-semibold text-gray-800 dark:text-gray-200">Teilnehmer:in E:</b> <mark class="bg-fuchsia-400/[.7]">"Es ist schon so, dass das A-Gebäude fehlt. Man konnte auch einfach mal einen Kaffee trinken gehen.</mark> Das geht heute nicht mehr so praktisch."</p>
+                    </blockquote>
+                    <p class="text-gray-700 dark:text-gray-300 my-4 leading-relaxed">
+                        Insgesamt konnten wir durch die Inhaltsanalyse folgende Kategorien und dazugehörige Merkmale ausmachen:
+                        <ul class="main-toggle-list list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                            <li>
+                                <div class="toggle-header flex items-center justify-between cursor-pointer py-2">
+                                    <p>
+                                        <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>
+                                        &ensp;<b class="font-semibold text-gray-900 dark:text-gray-100">Soziales & Vernetzung</b>
+                                    </p>
+                                </div>
+                                <ul class="toggle-content list-disc pl-5 mt-2 hidden">
+                                    <li>
+                                        <div class="toggle-header flex items-center justify-between cursor-pointer py-1">
+                                            <p>
+                                                <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>
+                                                &ensp;<b class="font-semibold text-gray-800 dark:text-gray-200">Freunde treffen</b>
+                                            </p>
+                                        </div>
+                                        <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                            <li>Treffpunkt: Cafeteria, rote Würfel im EG des A-Gebäudes, ggf. online</li>
+                                            <li>Leute, die keine Kommilitonen sind in der Cafeteria treffen</li>
+                                            <li>A-Gebäude als zentraler Treffpunkt für Studierende</li>
+                                        </ul>
+                                    </li>
+                                    <li>Tischtennisplatte, Tischkicker, Spielflächen wären wünschenswert</li>
+                                    <li>Die meisten Professoren werden als willkommend und hilfsbereit empfunden</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="toggle-header flex items-center justify-between cursor-pointer py-2">
+                                    <p>
+                                        <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>&ensp;
+                                        <b class="font-semibold text-gray-900 dark:text-gray-100">Ausstattung & Gebäude & Arbeitsplätze</b>
+                                    </p>
+                                </div>
+                                <ul class="toggle-content list-disc pl-5 mt-2 hidden">
+                                    <li>Gutes Konzept, Lernen und Essen in einem Gebäude (A-Gebäude) zu vereinen</li>
+                                    <li>Cafeteria, A-Gebäude fehlen (werden vermisst)</li>
+                                    <li>
+                                        <div class="toggle-header flex items-center justify-between cursor-pointer py-1">
+                                            <p>
+                                                <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>
+                                                <b class="font-semibold text-gray-800 dark:text-gray-200">Spontan Kaffee trinken ist kaum mehr möglich</b>
+                                            </p>
+                                        </div>
+                                        <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                            <li>Viele Plätze zum Konzentrieren und fokussierten Lernen fallen weg</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="toggle-header flex items-center justify-between cursor-pointer py-1">
+                                            <p>
+                                                <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>
+                                                <b class="font-semibold text-gray-800 dark:text-gray-200">Räume im A-Gebäude bevorzugt zum Lernen, insbes. für Prüfungen</b>
+                                            </p>
+                                        </div>
+                                        <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                            <li>Gruppenarbeit: "Rote Würfel" im EG des A-Gebäudes > Cafeteria > Mensa ></li>
+                                            <li>Leere Vorlesungsräume generell zu wenig</li>
+                                            <li>Einzelarbeit: KIT-Bibliothek; HKA-Bibliothek nur, falls KIT-Bibliothek voll ist</li>
+                                        </ul>
+                                        <li>
+                                            <div class="toggle-header flex items-center justify-between cursor-pointer py-1">
+                                                <p>
+                                                    <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>
+                                                    <b class="font-semibold text-gray-800 dark:text-gray-200">Gewünschte Veränderungen bzgl. A-Gebäude:</b>
+                                                </p>
+                                            </div>
+                                            <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                                <li>Ecken mit zu niedrigen Tischen in der Cafeteria verändern</li>
+                                                <li>Besseres Essensangebot in der Cafeteria</li>
+                                                <li>Steckdosen im Außenbereich erwünscht</li>
+                                                <li>Außenbereich ist toll für Sommer &#129070; jedoch kein Äquivalent für Wintersemester</li>
+                                                <li>Mehr "rote Würfel" im EG des A-Gebäudes; viel ungenutzte Fläche</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <div class="toggle-header flex items-center justify-between cursor-pointer py-1">
+                                                <p>
+                                                    <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>
+                                                    <b class="font-semibold text-gray-800 dark:text-gray-200">Gewünschte Veränderungen an der Hochschule:</b>
+                                                </p>
+                                            </div>
+                                            <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                                <li>Mehr Steckdosen in Hörsälen</li>
+                                                <li>Mehr Gruppenarbeitsplätze</li>
+                                                <li>Lernräume so gestalten wie im B-Gebäude</li>
+                                                <li>Gebäude modernisieren und renovieren</li>
+                                                <li>Musikalische Proberäume erwünscht (Musizieren ist häufig in WGs nicht möglich)</li>
+                                                <li>Yoga-Raum näher am E-Gebäude einrichten</li>
+                                                <li>Tischtennisplatte, Tischkicker, Spielflächen wären erwünscht</li>
+                                            </ul>
+                                        </li>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="toggle-header flex items-center justify-between cursor-pointer py-2">
+                                    <p>
+                                        <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>&ensp;
+                                        <b class="font-semibold text-gray-900 dark:text-gray-100">Informationsverteilung & Organisation</b>
+                                    </p>
+                                </div>
+                                <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                    <li>
+                                        <div class="toggle-header flex items-center justify-between cursor-pointer py-1">
+                                            <p>
+                                                <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>
+                                                <b class="font-semibold text-gray-800 dark:text-gray-200">Informationsverteilung:</b>
+                                            </p>
+                                        </div>
+                                        <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                            <li>Flyer an die Türen der Fakultätsgebäude</li>
+                                            <li>Instagram-Kanäle erhalten eher geringe Resonanz</li>
+                                            <li>Plakate werden bemerkt aber die in den Toilettenräumen werden am ehesten gelesen</li>
+                                            <li>Zentraler News-Feed gewünscht</li>
+                                            <li>HKA-App funktioniert nicht richtig</li>
+                                            <li>
+                                                <div class="toggle-header flex items-center justify-between cursor-pointer py-1">
+                                                    <p>
+                                                        <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>
+                                                        <b class="font-semibold text-gray-800 dark:text-gray-200">Kommunikation:</b>
+                                                    </p>
+                                                </div>
+                                                <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                                    <li>ILIAS und Email werden häufig genutzt, um nach neuen Informationen zu sehen</li>
+                                                    <li>
+                                                        <div class="toggle-header flex items-center justify-between cursor-pointer py-1">
+                                                            <p>
+                                                                <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>
+                                                                <b class="font-semibold text-gray-800 dark:text-gray-200">Es sollte ein einheitliches Kommunikationsmedium für alle Professoren geben:</b>
+                                                            </p>
+                                                        </div>
+                                                        <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                                            <li>Emails wirken auf Studierende zu förmlich</li>
+                                                            <li>Studierende bevorzugen die schnelle Form der Messenger-Dienste, auch um mit Professoren in Kontakt zu treten</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <div class="toggle-header flex items-center justify-between cursor-pointer py-1">
+                                                            <p>
+                                                                <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>
+                                                                <b class="font-semibold text-gray-800 dark:text-gray-200">WhatsApp-Gruppen gegenüber Mattermost bevorzugt:</b>
+                                                            </p>
+                                                        </div>
+                                                        <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                                            <li>Nicht alle Professoren und nicht alle Kurse sind bei/auf Mattermost erreichbar bzw. registriert</li>
+                                                            <li>Studenten können keine eigenen Channels auf Mattermost erstellen</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <div class="toggle-header flex items-center justify-between cursor-pointer py-1">
+                                            <p>
+                                                <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>
+                                                <b class="font-semibold text-gray-800 dark:text-gray-200">Organisation:</b>
+                                            </p>
+                                        </div>
+                                        <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                            <li>Bessere Klausurphase (weniger Klausuren knapp hintereinander)</li>
+                                            <li>Klausurplan sollte seit Anfang des Semesters feststehen</li>
+                                            <li>Einfache und direkte Kommunikation statt "hin- und her-Schicken" zwischen den Sekretariaten</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="toggle-header flex items-center justify-between cursor-pointer py-2">
+                                    <p>
+                                        <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>&ensp;
+                                        <b class="font-semibold text-gray-900 dark:text-gray-100">Events</b>
+                                    </p>
+                                </div>
+                                <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                    <li>Parties erhalten eher geringe Resonanz</li>
+                                    <li>Kleinere Events gerne beibehalten</li>
+                                    <li>Verkauf von (Glüh-)Wein oder ein Waffelstand wären willkommene spontane Abwechslungen</li>
+                                    <li>"Let's get together" wäre für manche Studenten interessant</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="toggle-header flex items-center justify-between cursor-pointer py-2">
+                                    <p>
+                                        <i class="fas fa-chevron-down text-[#14B8A6] transition-transform duration-300"></i>&ensp;
+                                        <b class="font-semibold text-gray-900 dark:text-gray-100">Anwesenheit</b>
+                                    </p>
+                                </div>
+                                <ul class="toggle-content list-disc pl-5 mt-1 hidden">
+                                    <li>Geringe Vorlesungs-Qualität scheint Hauptgrund für Abwesenheit zu sein (lt. 40% der Befragten)</li>
+                                    <li>Veranstaltungen um <time>08:00</time> Uhr sind zu früh (besonders problematisch für Studierende, die weiter weg wohnen)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </p>
+                    <div class="mb-4">
+                        <small class="text-sm text-gray-500 dark:text-gray-400">Umfassende Auflistung der Erkenntnisse aus der Fokusgruppe.</small>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">3. Fragebogen-Konstruktion & Quantitative Erhebung</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Basierend auf den Erkenntnissen der Fokusgruppen wurde ein detaillierter Fragebogen konzipiert, um die gewonnenen qualitativen Einsichten quantitativ zu validieren und zu erweitern. Die Umfrage wurde über <a href="https://www.soscisurvey.de/" target="_blank" class="text-[#14B8A6] hover:underline">Sosci Survey</a> implementiert und an alle Studierenden der Fakultät verteilt. Die Auswertung der erhobenen Daten erfolgte in <span class="font-semibold">Google Sheets</span>. Ursprünglich war <span class="font-semibold">SPSS</span> geplant, jedoch war für die Teams lediglich die Testversion nutzbar, welche aufgrund des begrenzten Testzeitraums keinen Mehrwert für das Projekt bieten konnte. Kenntnisse über SPSS wurden im Rahmen der Vorlesungen vermittelt.
+                    </p>
+                    <div class="mb-4">
+                        <img src="assets/questionaire_sample.png" alt="Screenshot: Beispielhafter Auszug aus dem Fragebogen, direkt aus Sosci Survey" class="w-[60%] h-auto rounded-lg shadow-md mb-2">
+                        <small class="text-sm text-gray-500 dark:text-gray-400">Beispiel: Ausschnitt aus dem erstellten Online-Fragebogen - direkt aus Sosci Survey.</small>
+                    </div>
+                    <div class="mt-8 mb-4">
+                        <img src="assets/questionaire_sample__results.png" alt="Screenshot: SPSS-Ausgabe" class="w-[60%] h-auto rounded-lg shadow-md mb-2">
+                        <small class="text-sm text-gray-500 dark:text-gray-400">Beispiel: Ausgabe einer statistischen Analyse in Google Sheets.</small>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">4. Ableitung von Handlungsempfehlungen</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Aus den aggregierten qualitativen und quantitativen Daten wurden konkrete und umsetzbare Handlungsempfehlungen für die Fakultät abgeleitet. Diese zielten darauf ab, identifizierte Schwächen zu adressieren, Chancen zu nutzen und das Wohlbefinden der Studierenden direkt zu verbessern.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-semibold text-xl text-gray-900 dark:text-gray-100 mb-2">5. Ergebnispräsentation & Stakeholder-Kommunikation</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                        Die finalen Ergebnisse und Handlungsempfehlungen wurden in einer umfassenden Präsentation aufbereitet. Diese wurde vor den relevanten Entscheidungsträgern der Fakultät gehalten, um die Akzeptanz und Umsetzung der Vorschläge zu gewährleisten und die Arbeit des gesamten Teams sichtbar zu machen.
+                    </p>
+                    <div class="mb-4">
+                        <img src="assets/sample_slide.png" alt="Screenshot: Präsentationsfolie" class="w-[60%] h-auto rounded-lg shadow-md mb-2">
+                        <small class="text-sm text-gray-500 dark:text-gray-400">Beispiel: Eine Folie der Ergebnispräsentation.</small>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Ergebnisse & Features</h2>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li><b>Umfassende Datenbasis:</b> Sammlung qualitativer (Fokusgruppen) und quantitativer (Fragebogen) Daten zum Campus-Wohlbefinden.</li>
+                <li><b>Konkrete Handlungsempfehlungen:</b> Entwicklung von direkt umsetzbaren Vorschlägen zur Verbesserung der Studierendenzufriedenheit.</li>
+                <li><b>Nachweislicher Impact:</b> Die Entscheidungsträger der Fakultät nahmen die Empfehlungen wahr und setzten erste Maßnahmen um, was die Relevanz der gewonnenen Erkenntnisse unterstreicht.</li>
+                <li><b>Erfolgreiche Stakeholder-Kommunikation:</b> Effektive Präsentation der Ergebnisse vor der Hochschulleitung.</li>
+                <li><b>Transparenz:</b> Die Arbeit aller beteiligten Teams wurde an der Fakultät publik gemacht.</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Erkenntnisse & Learnings</h2>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li><b>Empirische Forschungsmethoden:</b> Praktische Anwendung von qualitativen (Fokusgruppen) und quantitativen (Fragebogendesign, Auswertung) Erhebungsmethoden.</li>
+                <li><b>Dateninterpretation:</b> Fähigkeiten in der Analyse und Synthese komplexer Daten, um aussagekräftige Erkenntnisse und Handlungsempfehlungen zu formulieren.</li>
+                <li><b>Projekt- und Teammanagement:</b> Erfahrung in der Planung, Koordination und Durchführung eines interdisziplinären Projekts im Team.</li>
+                <li><b>Kommunikationsfähigkeiten:</b> Verbesserung der Präsentations- und Kommunikationsfähigkeiten bei der Vermittlung komplexer Ergebnisse an Entscheidungsträger.</li>
+                <li><b>Nutzerzentrierung:</b> Sensibilisierung für die Bedeutung der Einbeziehung der Zielgruppe (Studierende) bei der Lösungsentwicklung.</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Zukunftsaussichten</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                Das Projekt hat bereits zu ersten positiven Veränderungen am Campus geführt. Zukünftige Weiterentwicklungen könnten eine regelmäßige Überprüfung der Studierendenzufriedenheit, die Implementierung weiterer abgeleiteter Maßnahmen und eine detailliertere Analyse des Impacts der umgesetzten Empfehlungen umfassen.
+            </p>
+        </section>
+
+        <footer class="mt-10 py-6 text-center">
+            <small class="text-sm text-gray-400 dark:text-gray-500">&copy; 2025 Keanu Sky Heitzler</small>
+        </footer>
+    </main>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/spss.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wähle alle Header-Elemente aus, die als Trigger dienen
+            const toggleHeaders = document.querySelectorAll('.toggle-header');
+
+            toggleHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    // Finde die direkt nachfolgende "toggle-content" Liste
+                    const content = header.nextElementSibling;
+                    // Finde das Chevron-Icon in diesem Header
+                    const icon = header.querySelector('i');
+
+                    if (content && icon) {
+                        // Inhalt umschalten: verstecken oder anzeigen
+                        content.classList.toggle('hidden');
+                        
+                        // Icon drehen: 0 Grad für geschlossen, 180 Grad für geöffnet
+                        if (content.classList.contains('hidden')) {
+                            icon.classList.remove('rotate-180');
+                        } else {
+                            icon.classList.add('rotate-180');
+                        }
+                    }
+                });
+            });
+
+            // Optional: Beim Laden der Seite alle Listen schließen, falls sie nicht schon hidden sind.
+            // Das ist wichtig, falls du das 'hidden' Attribut im HTML vergessen hast oder um sicherzustellen,
+            // dass nur die Top-Level-Elemente sichtbar sind.
+            document.querySelectorAll('.toggle-content').forEach(content => {
+                if (!content.classList.contains('hidden')) {
+                    content.classList.add('hidden');
+                }
+                // Optional: Wenn du den ersten Level offen haben möchtest, müsstest du diese Logik anpassen.
+                // Die HTML-Struktur setzt sie bereits auf hidden, was der Standard ist.
+            });
+
+            // Optional: Den ersten Level der Liste (z.B. "Soziales & Vernetzung") standardmäßig öffnen
+            // Finde den ersten Top-Level-Header
+            const firstTopLevelHeader = document.querySelector('.main-toggle-list > li > .toggle-header');
+            if (firstTopLevelHeader) {
+                firstTopLevelHeader.click(); // Simuliere einen Klick, um den ersten Abschnitt zu öffnen
+            }
+        });
+    </script>
+</body>
+
+</html>
