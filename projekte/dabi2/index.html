@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -57,20 +58,17 @@
             padding: 0.2em 0.4em;
             border-radius: 0.25rem;
         }
+        tr:nth-child(even) {
+            background-color: #404b61;
+        }
     </style>
     <title>Keanu Sky Heitzler - Datenanalyse & BI Projekt</title>
 </head>
 <body class="w-full h-screen overflow-x-hidden bg-black text-white">
-    <header class="fixed top-0 left-0 w-full px-[9%] py-4 bg-transparent flex justify-between items-center z-50">
-        <a href="../index.html" class="text-3xl text-[#14B8A6] font-extrabold cursor-pointer transition-transform duration-500 hover:scale-110">Keanu</a>
-        <nav class="hidden md:flex justify-center items-center">
-            <a href="../index.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]"> Startseite</a>
-            <a href="../projekte.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6] active">Projekte</a>
-            <a href="../bildungsweg.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Bildungsweg</a>
-            <a href="../berufliche_laufbahn.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Berufliche Laufbahn</a>
-            <a href="../kontakt.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Kontakt</a>
-        </nav>
-    </header>
+    <div id="rec-header"></div>
+    <script>
+        $("#rec-header").load("../recycled/header.html");
+    </script>
     <main class="w-full mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-6 pt-24">
         <section class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md">
             <h1 class="text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-gray-300 mb-8">Semesterprojekt (4. Sem): Datenanalyse & BI (Instacart)</h1>
@@ -367,7 +365,20 @@
     # Return the average accuracy across all cross-validation folds.
     return np.mean(fold_scores)</code></pre>
                     <div class="mb-4">
-                        <img src="assets/ar_performance_0.png" alt="Screenshot: Accuracy-Scores von AR(1) und AR(2) Modellen" class="h-auto rounded-lg shadow-md mb-2">
+                        <table class="border-collapse border border-gray-400">
+                            <tr>
+                                <th></th>
+                                <th class="border border-gray-300 p-2">Accuracy</th>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 p-2"><b>AR(1)</b></td>
+                                <td class="border border-gray-300"><pre><output>0.7334</output></pre></td>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 p-2"><b>AR(2)</b></td>
+                                <td class="border border-gray-300"><pre><output>0.742</output></pre></td>
+                            </tr>
+                        </table>
                         <small class="text-sm text-gray-500 dark:text-gray-400">Vergleich der Accuracy-Scores für AR(1) und AR(2) Modelle.</small>
                     </div>
                     <h4 class="font-semibold text-lg text-gray-900 dark:text-gray-200 mb-2">2.2 Analyse von Autokorrelationen zur Modelloptimierung</h4>
@@ -497,15 +508,36 @@ def compute_pacf_improved(df: pd.DataFrame, lags: int) -> dict:
 
     return pacf_vals</code></pre>
                     <div class="mb-4">
-                        <iframe src="assets/acf.html" frameborder="1" width="1200" height="400"></iframe>
-                        <iframe src="assets/pacf.html" frameborder="1" width="1200" height="400"></iframe>
+                        <iframe src="assets/plt/acf.html" frameborder="1" width="1200" height="400"></iframe>
+                        <iframe src="assets/plt/pacf.html" frameborder="1" width="1200" height="400"></iframe>
                         <small class="text-sm text-gray-500 dark:text-gray-400">Visualisierung der Autokorrelationen zur Identifikation von Zeitreihenmustern.</small>
                     </div>
                     <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                         Basierend auf diesen Analysen wurde der optimale Wert für <code>n</code> im AR(n)-Modell abgeleitet und dessen Prognosegenauigkeit evaluiert.<br>Anhand der PAC-Koeffizienten lässt sich erkennen, dass <code>n=2</code> optimal zu sein scheint. Jedoch ziehe ich auch die Werte <code>3</code> und <code>4</code> in Betracht, da das Modell für diese Ordnungen nochmal zusätzliche Informationen erhalten würde. Ich vergewisserte mich, indem ich für jede der beiden Ordnungen die Trinings-Funktion ausführte und die Accuracy-Score aller trainierten Modelle verglich.
                     </p>
                     <div class="mb-4">
-                        <img src="assets/ar_performance_1.png" alt="Screenshot: Accuracy-Score des optimalen AR(n) Modells" class="h-auto rounded-lg shadow-md mb-2">
+                        <table class="border-collapse border border-gray-400">
+                            <tr>
+                                <th></th>
+                                <th class="border border-gray-300 p-2">Accuracy</th>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 p-2"><b>AR(1)</b></td>
+                                <td class="border border-gray-300"><pre><output>0.7334</output></pre></td>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 p-2"><b>AR(2)</b></td>
+                                <td class="border border-gray-300"><pre><output>0.742</output></pre></td>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 p-2"><b>AR(3)</b></td>
+                                <td class="border border-gray-300"><pre><output>0.7389</output></pre></td>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 p-2"><b>AR(4)</b></td>
+                                <td class="border border-gray-300"><pre><output>0.7425</output></pre></td>
+                            </tr>
+                        </table>
                         <small class="text-sm text-gray-500 dark:text-gray-400">Performance der bisher trainierten Modelle.</small>
                     </div>
                     <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
@@ -516,9 +548,9 @@ def compute_pacf_improved(df: pd.DataFrame, lags: int) -> dict:
                         Um ein vollständiges Bild der Zeitreihe zu erhalten, wurde die Trinkgeld-Zeitreihe auf das Vorhandensein von Periodizitäten und Trends untersucht. Diese Analyse ist entscheidend für eine ganzheitliche Modellierung des Verhaltens und die Integration geeigneter zeitlicher Merkmale.
                     </p>
                     <div class="mb-4">
-                        <iframe src="assets/weekly_tip_rate.html" frameborder="1" width="1200" height="400"></iframe>
+                        <iframe src="assets/plt/weekly_tip_rate.html" frameborder="1" width="1200" height="400"></iframe>
                         <small class="text-sm text-gray-500 dark:text-gray-400">Durchschnittliche Trinkgeldrate pro Wochentag.</small>
-                        <iframe src="assets/tip_rate_over_time.html" frameborder="1" width="1200" height="400" class="mt-8"></iframe>
+                        <iframe src="assets/plt/tip_rate_over_time.html" frameborder="1" width="1200" height="400" class="mt-8"></iframe>
                         <small class="text-sm text-gray-500 dark:text-gray-400">Durchschnittliche Trinkgeldrate pro Tag.</small>
                     </div>
                     <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
@@ -549,7 +581,7 @@ plot_additive.plot()
 plt.show()
                     </code></pre>
                     <div class="mb-4">
-                        <img src="assets/seasonal_decompose.png" alt="Screenshot: Zeitreihenzerlegung" class="h-auto rounded-lg shadow-md mb-2">
+                        <img src="assets/img/seasonal_decompose.png" alt="Screenshot: Zeitreihenzerlegung" class="h-auto rounded-lg shadow-md mb-2">
                         <small class="text-sm text-gray-500 dark:text-gray-400">Zerlegung der Zeitreihe in Trend, Saisonalität und Residuen (additiv).</small>
                     </div>
                     <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">

@@ -119,10 +119,17 @@
 </head>
 
 <body class="w-full h-screen overflow-x-hidden bg-black text-white">
-    <div id="rec-header"></div>
-    <script>
-        $("#rec-header").load("recyclables/header.html");
-    </script>
+    <header class="fixed top-0 left-0 w-full px-[9%] py-4 bg-transparent flex justify-between items-center z-50">
+        <a href="index.html" class="text-3xl text-[#14B8A6] font-extrabold cursor-pointer transition-transform duration-500 hover:scale-110">Keanu</a>
+
+        <nav class="hidden md:flex justify-center items-center">
+            <a href="#" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6] active"> Startseite</a>
+            <a href="projekte/" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Projekte</a>
+            <a href="bildung/" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Bildungsweg</a>
+            <a href="berufe/" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Berufliche Laufbahn</a>
+            <a href="kontakt/" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Kontakt</a>
+        </nav>
+    </header>
 
     <main class="w-full mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-6">
         <section class="home min-h-screen px-[9%] py-20 flex flex-col md:flex-row justify-center items-center gap-16 md:gap-32 bg-black">
@@ -160,7 +167,7 @@
                         <span class="inline-block bg-green-700 text-white px-3 py-1 text-sm rounded-full">Machine Learning</span>
                         <span class="inline-block bg-indigo-700 text-white px-3 py-1 text-sm rounded-full">Feature Engineering</span>
                     </div>
-                    <a href="projekte/dabi2.html" class="text-[#14B8A6] hover:underline font-medium text-sm">Mehr erfahren</a>
+                    <a href="projekte/dabi2" class="text-[#14B8A6] hover:underline font-medium text-sm">Mehr erfahren</a>
                 </div>
 
                 <div class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-6 rounded-xl shadow-md">
@@ -174,7 +181,7 @@
                         <span class="inline-block bg-purple-600 text-white px-3 py-1 text-sm rounded-full">Fokusgruppen</span>
                         <span class="inline-block bg-green-600 text-white px-3 py-1 text-sm rounded-full">Projektmanagement</span>
                     </div>
-                    <a href="projekte/wohlfuehl_campus.html" class="text-[#14B8A6] hover:underline font-medium text-sm">Mehr erfahren</a>
+                    <a href="projekte/wohlfuehl_campus" class="text-[#14B8A6] hover:underline font-medium text-sm">Mehr erfahren</a>
                 </div>
 
                 <div class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-6 rounded-xl shadow-md">
@@ -190,7 +197,7 @@
                         <span class="inline-block bg-purple-600 text-white px-3 py-1 text-sm rounded-full">Autopy</span>
                 <span class="inline-block bg-green-800 text-white px-3 py-1 text-sm rounded-full">Pynput</span>
                     </div>
-                    <a href="projekte/hand_tracking.html" class="text-[#14B8A6] hover:underline font-medium text-sm">Mehr erfahren</a>
+                    <a href="projekte/hand_tracking" class="text-[#14B8A6] hover:underline font-medium text-sm">Mehr erfahren</a>
                 </div>
             </div>
         </section>

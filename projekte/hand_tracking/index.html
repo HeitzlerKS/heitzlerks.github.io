@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <style>
         body {
@@ -62,17 +62,10 @@
 </head>
 
 <body class="w-full h-screen overflow-x-hidden bg-black text-white">
-    <header class="fixed top-0 left-0 w-full px-[9%] py-4 bg-transparent flex justify-between items-center z-50">
-        <a href="../index.html" class="text-3xl text-[#14B8A6] font-extrabold cursor-pointer transition-transform duration-500 hover:scale-110">Keanu</a>
-
-        <nav class="hidden md:flex justify-center items-center">
-            <a href="../index.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]"> Startseite</a>
-            <a href="../projekte.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6] active">Projekte</a>
-            <a href="../bildungsweg.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Bildungsweg</a>
-            <a href="../berufliche_laufbahn.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Berufliche Laufbahn</a>
-            <a href="../kontakt.html" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Kontakt</a>
-        </nav>
-    </header>
+    <div id="rec-header"></div>
+    <script>
+        $("#rec-header").load("../recycled/header.html");
+    </script>
 
     <main class="w-full mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-6 pt-24">
         <section class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md">
@@ -312,7 +305,7 @@
                     <div class="mb-4">
                          <video controls class="w-[80%]">
                             <source
-                                src="assets/demo_1.mp4"
+                                src="assets/vid/demo_1.mp4"
                                 type="video/mp4"
                             />
                          </video>
@@ -743,19 +736,19 @@ def find_distance(p1: list, p2: list, img=None) -> tuple:
                             </div>
                             <div class="tab-content-container p-4">
                                 <div id="feedback-tab1" class="tab-content block">
-                                    <img src="assets/move_mode.png" alt="Screenshot: Visuelles Feedback des Bewegungs-Modus auf dem Kamerabild" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
+                                    <img src="assets/img/move_mode.png" alt="Screenshot: Visuelles Feedback des Bewegungs-Modus auf dem Kamerabild" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
                                     <small class="text-sm text-gray-500 dark:text-gray-400">Screenshot: Visuelles Feedback des Bewegungs-Modus auf dem Kamerabild.</small>
                                 </div>
                                 <div id="feedback-tab2" class="tab-content hidden">
-                                    <img src="assets/left_click_mode.png" alt="Screenshot: Visuelles Feedback des Linksklick-Modus auf dem Kamerabild" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
+                                    <img src="assets/img/left_click_mode.png" alt="Screenshot: Visuelles Feedback des Linksklick-Modus auf dem Kamerabild" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
                                     <small class="text-sm text-gray-500 dark:text-gray-400">Screenshot: Visuelles Feedback des Linksklick-Modus auf dem Kamerabild.</small>
                                 </div>
                                 <div id="feedback-tab3" class="tab-content hidden">
-                                    <img src="assets/right_click_mode.png" alt="Screenshot: Visuelles Feedback des Rechtsklick-Modus auf dem Kamerabild" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
+                                    <img src="assets/img/right_click_mode.png" alt="Screenshot: Visuelles Feedback des Rechtsklick-Modus auf dem Kamerabild" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
                                     <small class="text-sm text-gray-500 dark:text-gray-400">Screenshot: Visuelles Feedback des Rechtsklick-Modus auf dem Kamerabild.</small>
                                 </div>
                                 <div id="feedback-tab4" class="tab-content hidden">
-                                    <img src="assets/scroll_mode.png" alt="Screenshot: Visuelles Feedback des Scroll-Modus auf dem Kamerabild" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
+                                    <img src="assets/img/scroll_mode.png" alt="Screenshot: Visuelles Feedback des Scroll-Modus auf dem Kamerabild" class="w-[80%] h-auto rounded-lg shadow-md mb-2">
                                     <small class="text-sm text-gray-500 dark:text-gray-400">Screenshot: Visuelles Feedback des Scroll-Modus auf dem Kamerabild.</small>
                                 </div>
                             </div>
@@ -775,7 +768,7 @@ def find_distance(p1: list, p2: list, img=None) -> tuple:
             <div class="mb-4">
                 <video controls class="w-[80%]">
                     <source
-                        src="assets/final_demo.mp4"
+                        src="assets/vid/final_demo.mp4"
                         type="video/mp4"
                     />
                 </video>
