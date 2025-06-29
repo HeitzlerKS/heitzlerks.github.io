@@ -59,8 +59,11 @@
 
     <main class="w-full mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-6 pt-24">
         <section id="kontakt-formular" class="mt-12 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md">
-            <h2 class="font-semibold text-center text-2xl sm:text-3xl text-gray-900 dark:text-gray-300 mb-8">Kontakt aufnehmen</h2>
-            <form class="flex flex-col max-w-md mx-auto mt-5">
+            <h2 class="font-semibold text-center text-2xl sm:text-3xl text-gray-900 dark:text-gray-300 mb-8">Kontakt</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-4 text-base text-center">
+                Habe ich Ihr Interesse geweckt? Na dann, schreiben Sie mir doch gerne eine Nachricht und<br>ich werde mich auf schnellstem Wege bei Ihnen melden. Ich freue mich schon auf Ihre Nachricht!<br>Hinweis: Nachrichten werden via <a href="https://formspree.io/" class="transition-all duration-300 border-b-2 border-[#14B8A6] hover:border-transparent">Formspree</a> übermittelt.
+            </p>
+            <form action="https://formspree.io/f/xeokvype" method="POST" class="flex flex-col max-w-md mx-auto mt-5">
                 <label for="name" class="mb-2 text-lg font-medium">Name</label>
                 <input
                     type="text"
@@ -85,7 +88,7 @@
                 />
                 <p id="error-email" class="hidden mb-4 text-red-500 dark:text-red-300 text-sm">Bitte geben Sie eine gültige Email-Adresse an!</p>
 
-                <label for="message" class="mb-2 text-lg font-medium">Nachricht</label>
+                <label for="message" class="mb-2 text-lg font-medium">Nassschricht</label>
                 <textarea
                     rows="5"
                     id="message"
@@ -124,7 +127,7 @@
         const successMessage = document.getElementById("success-message");
 
         form.addEventListener("submit", (e) => {
-            e.preventDefault();
+            // e.preventDefault();
 
             let isValid = true;
 

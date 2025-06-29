@@ -123,7 +123,11 @@
                     <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                         Die Arbeit begann mit der effizienten Verarbeitung großer Rohdatensätze im Parquet- und CSV-Format, um die Speichereffizienz zu gewährleisten. Dies umfasste das chunk-basierte Laden und Mergen von Bestell- und Trinkgelddaten. Der Grund, weshalb ich diesen Schritt einführte ist der, dass der RAM meiner Geräte nicht ausreicht, um auf allen Daten gleichzeitig zu arbeiten. Ich habe mich hier bewusst gegen ein Sampling entschieden, da die Stichprobe logischerweise auf oberster Ebene (hier: Kundenebene) zu erzeugen ist, was dem Prognosemodell Informationen zu einem großen Teil der Kunden vorenthalten würde. Informationen, welche für eine präzise Vorhersage essenziell sind. Ein alternativer Ansatz wäre die Arbeit mit einer SQLite-Datenbank, was jedoch noch nicht umgesetzt ist, jedoch zeitnah getestet wird.<br><br>Der folgende Code-Ausschnitt zeigt die Funktion, welche ich hierzu programmierte und auch in diesem Projekt nutzen werde, sobald die Arbeit auf den denormalisierten Daten von Nöten ist.
                     </p>
-                    <pre><code class="language-python">def process_data_by_chunks(
+                    <div class="toggle-header flex items-center justify-content cursor-pointer py-2">
+                        <i class="fas fa-chevron-right text-[#14B8A6] transition-transform duration-300"></i>
+                        <span class="short-code"><pre><code class="language-python">def process_data_by_chunks(...)</code></pre></span>
+                    </div>
+                    <pre class="toggle-content hidden"><code class="language-python">def process_data_by_chunks(
     orders_path: str,
     orders_products_path: str,
     output_chunk_dir: str,
@@ -279,7 +283,11 @@
                     <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                         Es wurde untersucht, inwieweit das Trinkgeldverhalten eines Nutzers bei einer Bestellung durch dessen vorhergehende(s) Verhalten beeinflusst wird. Hierzu wurden autoregressive Modelle (AR-Modelle) verschiedener Ordnungen (AR(1) und AR(2)) implementiert und deren Vorhersagegenauigkeit evaluiert. Es sollte angemerkt sein, dass es sich bei diesem Modell nicht ein typisches Auto<b>regressives</b> Modell handelt. Da es sich aufgrund der Daten um ein binäres Klassifikationsproblem handelt (<i>"Hat ein Kunde bei einer Bestellung Trinkgeld gegeben oder nicht?"</i>), werden in diesem Projekt Instanzen der <code>LogisticRegressionCV</code> der Library <code>scikit-learn</code> genutzt. Die Implementierung erfolgt so, dass das Modell auch mit den Zeitreihendaten umgehen kann. Das Modelltraining sollte laut Anforderungen, zur späteren Vergleichbarkeit, zunächst lediglich anhand von zeitlich verzögerten Features (im Folgenden als "Shifted-Features" bezeichnet) erfolgen. Um die zeitliche Komponente nicht zu ignorieren, nutze ich hier den <code>TimeSeriesSplit</code>, welcher u. a. dafür sorgt, dass die Modell-Trainingsdaten zeitlich vor den Testdaten liegen und wie bei einer Kreuzvalidierung eine Anzahl von <code>n_splits</code> Modellen trainiert.
                     </p>
-                    <pre><code class="language-python">def train_ar(X: pd.DataFrame, lags: int) -> float:
+                    <div class="toggle-header flex items-center justify-content cursor-pointer py-2">
+                        <i class="fas fa-chevron-right text-[#14B8A6] transition-transform duration-300"></i>
+                        <span class="short-code"><pre><code class="language-python">def train_ar(...)</code></pre></span>
+                    </div>
+                    <pre class="toggle-content hidden"><code class="language-python">def train_ar(X: pd.DataFrame, lags: int) -> float:
     """
     Trains and evaluates an Autoregressive (AR) model to predict users' tip probability
     based on historical tipping behavior.
@@ -385,7 +393,11 @@
                     <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                         Um den optimalen Grad der autoregressiven Abhängigkeit zu bestimmen und somit die bestmögliche Ordnung für ein AR(n)-Modell zu schätzen, wurden die Autokorrelationsfunktion (ACF) und die partielle Autokorrelationsfunktion (PACF) der Zeitreihe analysiert. Dies ermöglichte eine datengestützte Entscheidung über die Anzahl der einzubeziehenden vorhergehenden Bestellungen.<br>Der folgende Code-Ausschnitt zeigt die von mir programmierten Funktionen zur Berechnung von ACF und PACF.<br><b>Warum nicht einfach</b><code>statsmodels</code><b> verwenden?</b> Es ist so, dass die Trinkgeldgabe jedes einzelnen Kunden als eine eigene univariate Zeitreihe zu betrachten ist. Ergo hat jeder Kunde sein eigenes (quasi-)einzigartiges Trinkgeldgabe-Verhalten. Da die Methoden von <code>statsmodels</code> von stationären Daten für ein Regressionsproblem ausgehen, haben wir drei Gründe, <code>statsmodels</code> hier nicht zu verwenden, wovon einer vorerst lediglich eine Annahme ist, jedoch später geprüft wird:<br><ol class="list-decimal pl-5 mb-4 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed"><li>Wie bereits festgestellt, handelt es sich im Anwendungsfall dieses Projekts um ein Klassifikationsproblem; kein Regressionsproblem</li><li>Wenn für jeden Kunden eine Zeitreihe vorliegt, müssten die Methoden für jeden Kunden einzeln ausgeführt und deren Resultate aggregiert werden, um ein globales Resultat zu erhalten, was nicht im Sinne der (P)ACF-Analyse wäre. Zudem ist nicht davon auszugehen, dass für alle Verzögerungen für jeden Kunden eine Bestellung vorliegt, was dazu führen würde, dass die Analyse entweder so oder so ein total verfälschtes Resultat erbringen würde oder, was wahrscheinlicher wäre, ab einer gewissen Verzögerung nur <output>NaN</code>-Werte (<u>N</u>ot <u>a</u> <u>N</u>umber) enthalten würde.</li><li>Weder die einzelnen Kunden-Zeitreihen noch die globale Zeitreihe können als stationär vorausgesetzt werden, da bei Verhaltensweisen, wie die Trinkgeldgabe, stets mit einer Tendenz zu rechnen ist, die Zielgröße zu bestimmten, regelmäßigen Zeitpunkten oder -räumen relativ zu steigern oder zu mindern, sowie ein allgemeiner Anstieg oder Abschwung der Zielgröße über den gesamten betrachteten Zeitraum hinweg (Trend und Periodizität müssen noch nachgewiesen werden laut Projektauftrag erst nachher behandelt).</li></ol>
                     </p>
-                    <pre><code class="language-python">def compute_acf_improved(df: pd.DataFrame, lags: int) -> pd.Series:
+                    <div class="toggle-header flex items-center justify-content cursor-pointer py-2">
+                        <i class="fas fa-chevron-right text-[#14B8A6] transition-transform duration-300"></i>
+                        <span class="short-code"><pre><code class="language-python">def compute_acf_improved(...)</code></pre></span>
+                    </div>
+                    <pre class="toggle-content hidden"><code class="language-python">def compute_acf_improved(df: pd.DataFrame, lags: int) -> pd.Series:
     """
     Computes the Autocorrelation Function (ACF) for the 'tip' time series.
     
@@ -427,10 +439,12 @@
 
     # Remove the self-correlation (lag 0, where 'tip' correlates with itself)
     # and rename the index to reflect the lag numbers directly for clarity.
-    return acf_results.drop("tip").rename(index=lambda x: int(x.split('-')[1]))
-
-
-def compute_pacf_improved(df: pd.DataFrame, lags: int) -> dict:
+    return acf_results.drop("tip").rename(index=lambda x: int(x.split('-')[1]))</code></pre>
+                    <div class="toggle-header flex items-center justify-content cursor-pointer py-2">
+                        <i class="fas fa-chevron-right text-[#14B8A6] transition-transform duration-300"></i>
+                        <span class="short-code"><pre><code class="language-python">def compute_pacf_improved(...)</code></pre></span>
+                    </div>
+                    <pre class="toggle-content hidden"><code class="language-python">def compute_pacf_improved(df: pd.DataFrame, lags: int) -> dict:
     """
     Computes the Partial Autocorrelation Function (PACF) for the 'tip' time series.
     
@@ -560,7 +574,7 @@ def compute_pacf_improved(df: pd.DataFrame, lags: int) -> dict:
 chi2, p, _, _ = chi2_contingency(contingency_table)
 
 df_daily = orders_tips.set_index("order_date").resample("D").tip.mean()
-print(f"- p-value: {p}\nAutocorrelation (lag=7): {df_daily.autocorr(lag=7):.2f}")</code></pre>
+print(f"- p-value: {p}\n-Autocorrelation (lag=7): {df_daily.autocorr(lag=7):.2f}")</code></pre>
                     <div class="mb-4">
                         <pre><output>- p-value: 0.00000
 - Autocorrelation (lag=7): 0.93</output></pre>
@@ -969,6 +983,11 @@ plt.show()
             <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                 Für zukünftige Iterationen des Projekts könnten weitere Feature-Kategorien (z.B. RFM-Analyse), die Anwendung komplexerer Machine-Learning-Modelle (Gradient Boosting, Random Forests) und eine detailliertere Untersuchung der Cluster-spezifischen Verhaltensmuster (sobald das Clustering implementiert wurde) die Prognosegenauigkeit weiter steigern. Die Integration weiterer externer Datenquellen (z.B. Wetterdaten, lokale Ereignisse) könnte ebenfalls neue Einblicke liefern.
             </p>
+            <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Aktuelle TODOs</h2>
+            <ul class="list-disc pl-5 mb-6 text-gray-700 dark:text-gray-300 space-y-1 leading-relaxed">
+                <li><b>Feature-Engineering- und Preprocessing-Pipeline programmieren (WIP)</b></li>
+                <li>Wöchentlich-stündliche Periodizität statt stündlich modellieren</li>
+            </ul>
         </section>
         <footer class="mt-10 py-6 text-center">
             <small class="text-sm text-gray-400 dark:text-gray-500">&copy; 2025 Keanu Sky Heitzler</small>
@@ -977,5 +996,31 @@ plt.show()
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
     <script>hljs.highlightAll();</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleHeaders = document.querySelectorAll('.toggle-header');
+
+            toggleHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('i');
+                    const shortCode = header.querySelector('.short-code');
+
+                    if (content && icon && shortCode) {
+                        // Toggle Sichtbarkeit
+                        content.classList.toggle('hidden');
+                        shortCode.classList.toggle('hidden');
+                        icon.classList.toggle('rotate-90');
+                    }
+                });
+            });
+
+            // Optional: Alle Toggle-Contents initial schließen (falls mal vergessen wurde)
+            document.querySelectorAll('.toggle-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+        });
+
+    </script>
 </body>
 </html>
