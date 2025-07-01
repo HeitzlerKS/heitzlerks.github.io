@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <style>
         body {
@@ -57,57 +58,12 @@
         </nav>
     </header>
 
-    <main class="w-full mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-6 pt-24"> <section class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md">
-            <h2 class="text-2xl sm:text-3xl font-semibold text-center text-gray-900 dark:text-gray-300 mb-8">Meine Projekte</h2>
-            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <div class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-6 rounded-xl shadow-md">
-                    <h3 class="font-semibold text-xl mb-2">Semesterprojekt (4. Sem.), Datenanalyse & BI</h3>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4 text-base">
-                        Durchführung explorativer Datenanalysen und Anwendung von Machine Learning-Modellen (AR-Modelle) zur Vorhersage von Trinkgeldwahrscheinlichkeiten eines Lieferdienstes. Identifikation weiterer Einflussgrößen durch Feature Engineering und Verbesserung der Prognosemodelle.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="inline-block bg-blue-800 text-white px-3 py-1 text-sm rounded-full">Python</span>
-                        <span class="inline-block bg-yellow-600 text-white px-3 py-1 text-sm rounded-full">Pandas</span>
-                        <span class="inline-block bg-gray-600 text-white px-3 py-1 text-sm rounded-full">NumPy</span>
-                        <span class="inline-block bg-pink-700 text-white px-3 py-1 text-sm rounded-full">Scikit-Learn</span>
-                        <span class="inline-block bg-purple-700 text-white px-3 py-1 text-sm rounded-full">Plotly</span>
-                        <span class="inline-block bg-teal-700 text-white px-3 py-1 text-sm rounded-full">Statsmodels</span>
-                        <span class="inline-block bg-green-700 text-white px-3 py-1 text-sm rounded-full">Machine Learning</span>
-                        <span class="inline-block bg-indigo-700 text-white px-3 py-1 text-sm rounded-full">Feature Engineering</span>
-                    </div>
-                    <a href="dabi2/" class="text-[#14B8A6] hover:underline font-medium text-sm">Mehr erfahren</a>
-                </div>
-
-                <div class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-6 rounded-xl shadow-md">
-                    <h3 class="font-semibold text-xl mb-2">Semesterprojekt (3. Sem.), Wohlfühl-Campus</h3>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4 text-base">
-                        Rekrutierung und Moderation von Fokusgruppen zur Identifikation und Definition von Stärken und Schwächen sowie Chancen und Risiken des Hochschul-Campus. Auswertung der qualitativen Ergebnisse und Ableitung konkreter Handlungsempfehlungen.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="inline-block bg-blue-600 text-white px-3 py-1 text-sm rounded-full">Sosci Survey</span>
-                        <span class="inline-block bg-teal-600 text-white px-3 py-1 text-sm rounded-full">Statistische Analyse</span>
-                        <span class="inline-block bg-purple-600 text-white px-3 py-1 text-sm rounded-full">Fokusgruppen</span>
-                        <span class="inline-block bg-green-600 text-white px-3 py-1 text-sm rounded-full">Projektmanagement</span>
-                    </div>
-                    <a href="wohlfuehl_campus/" class="text-[#14B8A6] hover:underline font-medium text-sm">Mehr erfahren</a>
-                </div>
-
-                <div class="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-6 rounded-xl shadow-md">
-                    <h3 class="font-semibold text-xl mb-2">Privat, Hand-Tracking & Gestensteuerung</h3>
-                    <p class="text-gray-700 dark:text-gray-300 mb-4 text-base">
-                        Verwendung von OpenCV und Mediapipe zur Erkennung und Markierung menschlicher Hände und Finger. Implementierung einer Gestensteuerung (Cursorbewegung, Klicken, Scrollen) und Tracking von Fingerspitzen mit NumPy.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="inline-block bg-blue-800 text-white px-3 py-1 text-sm rounded-full">Python</span>
-                        <span class="inline-block bg-sky-800 text-white px-3 py-1 text-sm rounded-full">OpenCV</span>
-                        <span class="inline-block bg-orange-800 text-white px-3 py-1 text-sm rounded-full">MediaPipe</span>
-                        <span class="inline-block bg-gray-600 text-white px-3 py-1 text-sm rounded-full">NumPy</span>
-                        <span class="inline-block bg-purple-600 text-white px-3 py-1 text-sm rounded-full">Autopy</span>
-                <span class="inline-block bg-green-800 text-white px-3 py-1 text-sm rounded-full">Pynput</span>
-                    </div>
-                    <a href="hand_tracking/" class="text-[#14B8A6] hover:underline font-medium text-sm">Mehr erfahren</a>
-                </div>
-            </div>
+    <main class="w-full mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-6 pt-24">
+        <section class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md">
+            <div id="rec-project_view"></div>
+            <script>
+                $("#rec-project_view").load("recycled/project_view.html");
+            </script>
         </section>
 
         <footer class="mt-10 py-6 text-center">
