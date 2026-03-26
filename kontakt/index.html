@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
@@ -45,17 +44,7 @@
 </head>
 
 <body class="w-full h-screen overflow-x-hidden bg-black text-white">
-    <header class="fixed top-0 left-0 w-full px-[9%] py-4 bg-transparent flex justify-between items-center z-50">
-        <a href=".." class="text-3xl text-[#14B8A6] font-extrabold cursor-pointer transition-transform duration-500 hover:scale-110">Keanu</a>
-
-        <nav class="hidden md:flex justify-center items-center">
-            <a href=".." class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]"> Startseite</a>
-            <a href="../projekte/" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Projekte</a>
-            <a href="../bildung/" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Bildungsweg</a>
-            <a href="../berufe/" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6]">Berufliche Laufbahn</a>
-            <a href="../kontakt/" class="text-lg text-white ml-16 font-medium transition-all duration-300 border-b-2 border-transparent hover:text-[#14B8A6] hover:border-[#14B8A6] active">Kontakt</a>
-        </nav>
-    </header>
+    <div id="rec-header"></div>
 
     <main class="w-full mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-6 pt-24">
         <section id="kontakt-formular" class="mt-12 bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-6 rounded-xl shadow-md">
@@ -109,74 +98,14 @@
         </section>
     </main>
 
-    <footer class="mt-10 py-6 text-center">
-        <small class="text-sm text-gray-400 dark:text-gray-500">&copy; 2025 Keanu Sky Heitzler</small>
-    </footer>
-
+    <div id="rec-footer"></div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Kontaktformular JS-Validierung (direkt auf dieser Seite)
-        const form = document.querySelector("#kontakt-formular form");
-        const nameInput = document.getElementById("name");
-        const emailInput = document.getElementById("email");
-        const messageInput = document.getElementById("message");
-
-        const errorName = document.getElementById("error-name");
-        const errorEmail = document.getElementById("error-email");
-        const errorMessage = document.getElementById("error-message");
-
-        const successMessage = document.getElementById("success-message");
-
-        form.addEventListener("submit", (e) => {
-            // e.preventDefault();
-
-            let isValid = true;
-
-            if (nameInput.value.trim() === "") {
-                nameInput.classList.add("border-red-500", "dark:border-red-300");
-                errorName.classList.remove("hidden");
-                isValid = false;
-            } else {
-                nameInput.classList.remove("border-red-500", "dark:border-red-300");
-                errorName.classList.add("hidden");
-            }
-
-            if (!emailInput.value.includes("@") || !emailInput.value.includes(".")) {
-                emailInput.classList.add("border-red-500", "dark:border-red-300");
-                errorEmail.classList.remove("hidden");
-                isValid = false;
-            } else {
-                emailInput.classList.remove("border-red-500", "dark:border-red-300");
-                errorEmail.classList.add("hidden");
-            }
-
-            if (messageInput.value.trim() === "") {
-                messageInput.classList.add("border-red-500", "dark:border-red-300");
-                errorMessage.classList.remove("hidden");
-                isValid = false;
-            } else {
-                messageInput.classList.remove("border-red-500", "dark:border-red-300");
-                errorMessage.classList.add("hidden");
-            }
-
-            if (isValid) {
-                nameInput.classList.remove("border-red-500", "dark:border-red-300");
-                emailInput.classList.remove("border-red-500", "dark:border-red-300");
-                messageInput.classList.remove("border-red-500", "dark:border-red-300");
-
-                successMessage.classList.remove("hidden");
-                setTimeout(() => {
-                    successMessage.classList.add("opacity-100", "scale-100");
-                }, 10);
-
-                setTimeout(() => {
-                    successMessage.classList.remove("opacity-100", "scale-100");
-                }, 4000);
-
-                setTimeout(() => {
-                    successMessage.classList.add("hidden");
-                    form.reset();
-                }, 4500);
-            }
+        $(function() {
+            $("#rec-header").load("../recycled/header.html"); // Note the ../ for relative path
+            $("#rec-footer").load("../recycled/footer.html"); // Note the ../ for relative path
         });
     </script>
 </body>
