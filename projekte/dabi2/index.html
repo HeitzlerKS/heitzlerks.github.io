@@ -640,7 +640,11 @@ plt.show()
                     <p class="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
                         Das erweiterte Prognosemodell wurde unter Berücksichtigung aller neuen Features erneut trainiert und validiert. Die robuste Validierungsstrategie mittels <code>TimeSeriesSplit</code> wurde beibehalten, um die Generalisierbarkeit des Modells auf zukünftige Daten zu gewährleisten. Die finale Modell-Performance wurde erneut anhand des Accuracy-Scores bewertet.
                     </p>
-                    <pre><code class="language-python">def feature_preprocessing(
+                    <div class="toggle-header flex items-center justify-content cursor-pointer py-2">
+                        <i class="fas fa-chevron-right text-[#14B8A6] transition-transform duration-300"></i>
+                        <span class="short-code"><pre><code class="language-python">def feature_preprocessing(...)</code></pre></span>
+                    </div>
+                    <pre class="toggle-content hidden"><code class="language-python">def feature_preprocessing(
     df: pd.DataFrame,
     lags: int,
     min_date_global: Optional[pd.Timestamp] = None
@@ -732,9 +736,9 @@ plt.show()
 
     print("\t- Feature Preprocessing finished successfully!")
 
-    return df_copy, preprocessor
-                    </code></pre>
+    return df_copy, preprocessor</code></pre>
                     <small class="text-sm text-gray-500 dark:text-gray-400 mt-4">Funktion für erweitertes Feature Engineering (gekürzt)</small>
+                    
                     <pre><code class="language-python mt-8">def train_ar_extended_new(
     df_input: pd.DataFrame,
     lags: int
@@ -992,7 +996,7 @@ plt.show()
             </ul>
         </section>
         <footer class="mt-10 py-6 text-center">
-            <small class="text-sm text-gray-400 dark:text-gray-500">&copy; 2025 Keanu Sky Heitzler</small>
+            <small class="text-sm text-gray-400 dark:text-gray-500">&copy; 2026 Keanu Sky Heitzler</small>
         </footer>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
